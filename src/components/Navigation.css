@@ -1,0 +1,80 @@
+.custom-navbar {
+  background-color: #4e342e; /* Dark brown */
+  border-bottom: 3px solid #8e44ad; /* Purple border */
+  padding: 10px 20px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.brand-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text {
+  font-family: 'Playfair Display';
+  color: #FAF5F2;
+  font-size: 2rem;
+  font-weight: semi-bold;
+  letter-spacing: 0.07em;
+  line-height: 43px;
+}
+
+.brand-subtext {
+  font-family: 'Playfair Display';
+  color: #FAF5F2;
+  font-size: 1.25rem;
+  font-weight: regular;
+    letter-spacing: 0.07em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-item {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #FAF5F2; 
+  text-decoration: none;
+}
+
+.navText {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.navText.active-link {
+  color: #ffeb3b; /* Highlight color for active link */
+}
+
+.login-btn {
+  background-color: #2d2d2d; /* Dark button */
+  color: #FAF5F2; /* Light text */
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.sign-up {
+  background-color: #FAF5F2; /* Light button */
+  color: #4e342e; /* Dark text */
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.sign-up:hover {
+  background-color: #8e44ad; /* Purple hover */
+  color: #FAF5F2;
+}
