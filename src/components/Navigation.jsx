@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 import Navbar from 'react-bootstrap/Navbar';
-import headerIcon from '../../public/headerIcon.svg';
+import headerIcon from '../../public/headerIcon.png';
 
 const LandingPageLink = ({ isSelected, onClick }) => (
   <NavLink to="/" className="nav-item" onClick={onClick}>

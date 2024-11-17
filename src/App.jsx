@@ -10,6 +10,9 @@ import ImpactPage from './pages/ImpactPage';
 import VolunteerOpportunitiesPage from './pages/VolunteerOpportunitiesPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminControlDashboard from './pages/AdminControlDashboard';
+import '@fontsource/archivo';
+import '@fontsource/archivo-black';
+
 
 const App = () => {
   return (
