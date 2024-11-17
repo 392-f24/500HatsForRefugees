@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navigation.css";
@@ -7,6 +7,7 @@ import headerIcon from '../../public/HatLogo.svg';
 
 const Navigationbar = () => {
   const [selectedLink, setSelectedLink] = useState("");
+  const location = useLocation(); // Get current location to check for active route
 
   const navLinks = [
     { to: "/", label: "Our Impact", key: "landing" },
@@ -14,10 +15,16 @@ const Navigationbar = () => {
     { to: "/volunteerOpportunities", label: "Our Team", key: "volunteer" },
   ];
 
+  // Function to handle click on the Navbar.Brand
+  const handleBrandClick = (e) => {
+    e.preventDefault(); // Prevent page reload
+    setSelectedLink("landing"); // Set to "Our Impact" when Navbar.Brand is clicked
+  };
+
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
-        <Navbar.Brand href="/" className="brand-logo">
+        <Navbar.Brand href="/" className="brand-logo" onClick={handleBrandClick}>
           <img src={headerIcon} alt="Logo" className="header-icon" />
           <div className="brand-text-container">
             <span className="brand-text">500HatsForRefugees</span>
@@ -32,7 +39,7 @@ const Navigationbar = () => {
                 key={key}
                 to={to}
                 className={`nav-item nav-link ${
-                  selectedLink === key ? "active-link" : ""
+                  (location.pathname === to || selectedLink === key) ? "active-link" : ""
                 }`}
                 onClick={() => setSelectedLink(key)}
               >

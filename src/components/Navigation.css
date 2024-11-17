@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px; /* Added spacing between main text and subtext */
+  cursor: pointer; /* Makes the text clickable */
 }
 
 .brand-text {
@@ -31,6 +32,7 @@
   font-weight: 400;
   letter-spacing: 0.07em;
 }
+
 /* Navbar styling */
 .custom-navbar {
   background-color: #4e342e; /* Dark brown */
@@ -49,7 +51,7 @@
 
 .nav-link:hover,
 .nav-item.active-link {
-  color: #ffeb3b !important; /* Highlight color */
+  color: #ffeb3b !important; /* Highlight color (Yellow) */
 }
 
 /* Login and Sign-Up buttons */
