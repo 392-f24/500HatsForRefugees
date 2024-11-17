@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 
 import {getDatabase,  onValue, ref, update, get,} from "firebase/database"
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useCallback, useState, useEffect } from "react";
 
 // Your web app's Firebase configuration
@@ -22,7 +23,7 @@ const firebase = initializeApp(firebaseConfig);
 
 const database = getDatabase(firebase);
 const auth = getAuth(firebase);
-
+//google sign in
 export { firebase, database, auth };
 
 export const signInWithGoogle = async() => {
@@ -31,6 +32,31 @@ export const signInWithGoogle = async() => {
 };
 
 export const signOut = () => firebaseSignOut(auth);
+
+///admin sign in function
+export const AdminSignIn = async (email, password) => {
+    try {
+        // Authenticate the user using email and password
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Check if the user is an admin in the Realtime Database
+        const adminRef = ref(database, `admin/${user.uid}`);
+        const adminSnapshot = await get(adminRef);
+
+        if (!adminSnapshot.exists()) {
+            console.error('User is not an admin');
+            throw new Error('User is not an admin');
+        }
+
+        console.log('Admin signed in successfully:', user);
+        return { user, isAdmin: true };
+
+    } catch (error) {
+        console.error('Error during admin sign-in:', error.message);
+        throw error;
+    }
+};
 
 export const useAuthState = () => {
     const [user, setUser] = useState();
