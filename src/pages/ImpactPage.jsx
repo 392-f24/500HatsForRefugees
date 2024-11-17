@@ -1,16 +1,37 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import "./ImpactPage.css"; // Make sure to import your stylesheet
+import Gallery from "../components/Gallery";
+import { Button } from "react-bootstrap";
+import SubmitPhotoModal from '../components/SubmitPhotoModal';
+
 
 const ImpactPage = () => {
-  return (
-    <div>
+  const [modalShow, setModalShow] = useState(false);
 
-      {/* Main content for the Impact Page goes here */}
-      <div className="impact-page-content">
-        <h1>Our Impact</h1>
-        <p>Details about the impact made by 500 Hats For Refugees will be showcased here.</p>
-        {/* Add graphs, images, or other content as needed */}
+    // Example: Passing a current user's name
+    const currentUserName = "John Doe";
+  return (
+    <div className="page-container">
+      <div>
+        <h1 className="impact-title">Our Impact in Pictures</h1>
       </div>
+      <div>
+        <Gallery/>
+      </div>
+      <div className="feature-photo-section">
+        <h5 className="feature-photo-heading">Have an image you would like to have featured here?</h5>
+        <Button className="feature-photo-button" 
+        onClick={() => setModalShow(true)}>
+          Send Your Photo Here
+        </Button>
+    </div>
+    {/* SubmitPhotoModal is shown when the button is clicked */}
+      <SubmitPhotoModal
+                show={modalShow}
+                handleClose={() => setModalShow(false)}
+                currentUserName={currentUserName}
+            />
     </div>
   );
 };
