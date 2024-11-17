@@ -1,86 +1,110 @@
-.custom-navbar {
-  background-color: #4e342e; /* Dark brown */
-  border-bottom: 3px solid #8e44ad; /* Purple border */
-  padding: 10px 20px;
-}
-/*brand icon text control********************************************************/
+/* Brand styling */
 .brand-logo {
   display: flex;
   align-items: center;
 }
 
 .header-icon {
-  width: 35px;
-  height: 35px;
-  margin-right: 8px;
+  width: 75px; /* Increased size */
+  height: 75px; /* Increased size */
+  margin-right: 15px; /* Increased spacing between icon and text */
 }
+
 .brand-text-container {
   display: flex;
   flex-direction: column;
+  gap: 5px; /* Added spacing between main text and subtext */
+  cursor: pointer; /* Makes the text clickable */
 }
 
 .brand-text {
-  font-family: 'Playfair Display';
-  color: #FAF5F2;
-  font-size: 1.75rem;
-  font-weight: semi-bold;
+  font-family: 'Playfair Display', serif;
+  color: #faf5f2;
+  font-size: 2rem; /* Slightly larger font for the main brand text */
+  font-weight: 600;
   letter-spacing: 0.07em;
-  line-height: 40px;
 }
 
 .brand-subtext {
-  font-family: 'Playfair Display';
-  color: #FAF5F2;
-  font-size: 1rem;
-  font-weight: regular;
+  font-family: 'Playfair Display', serif;
+  color: #faf5f2;
+  font-size: 1.2rem; /* Slightly larger font for subtext */
+  font-weight: 400;
   letter-spacing: 0.07em;
 }
 
-
-/*nav-items. container control***********************************/
-.nav-items-container {
-  display: flex;
-  flex-grow: 1; /* Fills available space */
-  gap: 20px; /* Space between nav items */
-  justify-content: space-between; /* Spreads items across the space */
-  align-items: center;
-  margin-left: 500px;
-  margin-right: 200px;
+/* Navbar styling */
+.custom-navbar {
+  background-color: #4e342e; /* Dark brown */
+  border-bottom: 3px solid #8e44ad; /* Purple border */
+  padding: 10px 20px;
 }
 
+/* Navigation links */
 .nav-item {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  color: #FAF5F2;
+  font-size: 1.1rem;
+  color: #faf5f2;
   text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition for color changes */
 }
 
-.navText.active-link {
-  color: #ffeb3b; /* Highlight color for active link */
+.nav-link:hover,
+.nav-item.active-link {
+  color: #ffeb3b !important; /* Highlight color (Yellow) */
 }
 
-/* login sigin up control ***********************************/
+/* Login and Sign-Up buttons */
 .login-signup-container {
   display: flex;
-  gap: 10px; /* Reduces the space between the login and sign-up buttons */
+  gap: 10px;
   align-items: center;
 }
-.login-btn {
-  background-color: #000;
-  color: #FAF5F2;
-  padding: 5px 15px;
+
+.auth-btn {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
   border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 5px 15px;
+  text-align: center;
+  width: 120px !important; /* Ensure buttons are the same width */
+  height: 40px !important; /* Ensure buttons are the same height */
 }
 
+/* Login button */
+.login-btn {
+  background-color: #000;
+  color: #faf5f2;
+  border: 2px solid #000;
+}
+
+.login-btn:hover {
+  background-color: #8e44ad;
+  color: #faf5f2;
+}
+
+.login-btn.active-link {
+  background-color: #8e44ad;
+  color: #faf5f2;
+  border-color: #8e44ad;
+}
+
+/* Sign-Up button */
 .sign-up {
-  background-color: #FAF5F2;
+  background-color: #faf5f2;
   color: #4e342e;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-weight: bold;
+  border: 2px solid #faf5f2;
 }
 
 .sign-up:hover {
   background-color: #8e44ad;
-  color: #FAF5F2;
+  color: #faf5f2;
+}
+
+.sign-up.active-link {
+  background-color: #8e44ad;
+  color: #faf5f2;
+  border-color: #8e44ad;
 }
