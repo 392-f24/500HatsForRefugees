@@ -59,24 +59,50 @@
   align-items: center;
 }
 
+.auth-btn {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 5px 15px;
+  text-align: center;
+  width: 120px !important; /* Ensure buttons are the same width */
+  height: 40px !important; /* Ensure buttons are the same height */
+}
+
+/* Login button */
 .login-btn {
   background-color: #000;
   color: #faf5f2;
-  padding: 5px 15px;
-  border-radius: 20px;
-  text-decoration: none;
+  border: 2px solid #000;
 }
 
+.login-btn:hover {
+  background-color: #8e44ad;
+  color: #faf5f2;
+}
+
+.login-btn.active-link {
+  background-color: #8e44ad;
+  color: #faf5f2;
+  border-color: #8e44ad;
+}
+
+/* Sign-Up button */
 .sign-up {
   background-color: #faf5f2;
   color: #4e342e;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  text-decoration: none;
+  border: 2px solid #faf5f2;
 }
 
 .sign-up:hover {
   background-color: #8e44ad;
   color: #faf5f2;
+}
+
+.sign-up.active-link {
+  background-color: #8e44ad;
+  color: #faf5f2;
+  border-color: #8e44ad;
 }

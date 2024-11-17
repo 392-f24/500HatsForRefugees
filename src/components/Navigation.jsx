@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navigation.css";
 import headerIcon from '../../public/HatLogo.svg';
@@ -40,24 +40,28 @@ const Navigationbar = () => {
               </NavLink>
             ))}
             <div className="login-signup-container ms-3">
-              <NavLink
-                to="/login"
-                className={`nav-item login-btn ${
+              <Button
+                variant="dark"
+                className={`login-btn ${
                   selectedLink === "login" ? "active-link" : ""
                 }`}
                 onClick={() => setSelectedLink("login")}
+                as={NavLink}
+                to="/login"
               >
                 LOG IN
-              </NavLink>
-              <NavLink
-                to="/signUp"
-                className={`nav-item sign-up ${
+              </Button>
+              <Button
+                variant="light"
+                className={`sign-up ${
                   selectedLink === "signup" ? "active-link" : ""
                 }`}
                 onClick={() => setSelectedLink("signup")}
+                as={NavLink}
+                to="/signUp"
               >
                 SIGN UP
-              </NavLink>
+              </Button>
             </div>
           </Nav>
         </Navbar.Collapse>
