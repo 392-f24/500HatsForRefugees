@@ -3,7 +3,7 @@ import { useDbData } from '../utilities/firebase.js';
 import { Card, Button } from 'react-bootstrap';
 import './VolunteerOpportunitiesPage.css';
 import axios from 'axios';
-import './Pages.css'
+import './Pages.css';
 import AddEvent from '../components/AddEvent';
 import DonationForm from '../components/DonationForm';
 import GoogleMapComponent from '../components/GoogleMapComponent';
@@ -21,13 +21,14 @@ const VolunteerOpportunitiesPage = () => {
   const handleFilterChange = (e) => {
     setFilterType(e.target.value);
   };
+  
   const handleZipChange = (e) => {
     setZipCode(e.target.value);
   };
+  
   const handleRadiusChange = (e) => {
     setRadius(e.target.value ? parseFloat(e.target.value) : null); // Convert to float or set to null
   };
-
 
   // Function to geocode an address
   const geocodeAddress = async (address, apiKey) => {
@@ -52,14 +53,14 @@ const VolunteerOpportunitiesPage = () => {
     return R * c;
   };
 
-
   useEffect(() => {
-    const filterEventsByDistance = async () => {
+    const filterEventsByDistanceAndType = async () => {
       if (!events || !zipCode) return;
 
-      console.log('Filtering events by distance...');
+      console.log('Filtering events...');
       console.log('ZIP Code:', zipCode);
       console.log('Radius:', radius);
+      console.log('Event Type:', filterType);
       console.log('Events:', events);
 
       const apiKey = "AIzaSyAI7wOB4XNX5xCMJsuA-XqWlSlzxDRNU9c";
@@ -68,18 +69,23 @@ const VolunteerOpportunitiesPage = () => {
 
       const eventCoordinates = await Promise.all(
         Object.keys(events).map(async (eventId) => {
-          const address = events[eventId].Address;
+          const event = events[eventId];
+          const address = event.Address;
           const coordinates = await geocodeAddress(address, apiKey);
           console.log(`Coordinates for event ${eventId} (${address}):`, coordinates);
-          return { eventId, coordinates };
+          return { eventId, coordinates, event };
         })
       );
 
-      const filteredEventIds = eventCoordinates.filter(({ coordinates }) => {
-        if (radius === null) return true; // Include all events if radius is not set
-        const distanceInMiles = calculateDistance(zipCodeCoordinates, coordinates);
-        console.log(`Distance to event ${coordinates.eventId}:`, distanceInMiles);
-        return distanceInMiles <= radius;
+      // Apply filters for event type and distance
+      const filteredEventIds = eventCoordinates.filter(({ event, coordinates }) => {
+        // Filter by event type
+        const isEventTypeMatch = filterType === 'all' || event.Type === filterType;
+
+        // Filter by distance (only if radius is set)
+        const isDistanceMatch = radius === null || calculateDistance(zipCodeCoordinates, coordinates) <= radius;
+
+        return isEventTypeMatch && isDistanceMatch;
       }).map(({ eventId }) => eventId);
 
       console.log('Filtered Event IDs:', filteredEventIds);
@@ -88,7 +94,7 @@ const VolunteerOpportunitiesPage = () => {
       console.log('Filtered Events:', filteredEvents);
     };
 
-    filterEventsByDistance();
+    filterEventsByDistanceAndType();
   }, [events, zipCode, radius, filterType]);
 
   return (
