@@ -11,30 +11,31 @@ import ImpactPage from './pages/ImpactPage';
 import VolunteerOpportunitiesPage from './pages/VolunteerOpportunitiesPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminControlDashboard from './pages/AdminControlDashboard';
+import '@fontsource/archivo';
+import '@fontsource/archivo-black';
+
 
 const App = () => {
   const location = useLocation();
-  console.log('Current path:', location.pathname);
 
-  let navbar;
-  if (!location.pathname.toLowerCase().includes('/adminlogin') &&
-    !location.pathname.toLowerCase().includes('/admindashboard')) {
-  navbar = <Navigationbar />;
-  }
+  const showNavbar = !location.pathname.toLowerCase().includes('/adminlogin') &&
+                     !location.pathname.toLowerCase().includes('/admindashboard');
 
 
   return (
     <div className="App-header">
-      {navbar}
+      {showNavbar && <Navigationbar />}
       <div className="content flex-grow">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/impact" element={<ImpactPage />} />
-          <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
-          <Route path="/adminLogin" element={<AdminLogin />} />
-          <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
-        </Routes>
-      </div>
+        <div className='body'>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/impact" element={<ImpactPage />} />
+            <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
+            <Route path="/adminLogin" element={<AdminLogin />} />
+            <Route path="/adminDashboard" element={<AdminControlDashboard />} />
+          </Routes>
+        </div>
+     </div>
     </div>
   );
 };

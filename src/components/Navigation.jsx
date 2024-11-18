@@ -1,80 +1,64 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import './Navigation.css';
-import Navbar from 'react-bootstrap/Navbar';
-import headerIcon from '../../public/headerIcon.svg';
-
-const LandingPageLink = ({ isSelected, onClick }) => (
-  <NavLink to="/" className="nav-item" onClick={onClick}>
-    <p className={`navText ${isSelected ? 'active-link' : ''}`}>Our Impact</p>
-  </NavLink>
-);
-
-const ImpactPageLink = ({ isSelected, onClick }) => (
-  <NavLink to="/impact" className="nav-item" onClick={onClick}>
-    <p className={`navText ${isSelected ? 'active-link' : ''}`}>Get Involved</p>
-  </NavLink>
-);
-
-const VolunteerOpportunitiesLink = ({ isSelected, onClick }) => (
-  <NavLink to="/volunteerOpportunities" className="nav-item" onClick={onClick}>
-    <p className={`navText ${isSelected ? 'active-link' : ''}`}>Our Team</p>
-  </NavLink>
-);
-
-const LoginLink = ({ isSelected, onClick }) => (
-  <NavLink to="/login" className="nav-item login-btn" onClick={onClick}>
-    <p className={`navText ${isSelected ? 'active-link' : ''}`}>LOG IN</p>
-  </NavLink>
-);
-
-const SignUpLink = ({ isSelected, onClick }) => (
-  <NavLink to="/signUp" className="nav-item sign-up" onClick={onClick}>
-    <p className={`navText ${isSelected ? 'active-link' : ''}`}>SIGN UP</p>
-  </NavLink>
-);
+import React, { useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Navigation.css";
+import headerIcon from '../../public/HatLogo.svg';
 
 const Navigationbar = () => {
-  const [selectedLink, setSelectedLink] = useState('');
+  const [selectedLink, setSelectedLink] = useState("");
+  const location = useLocation(); // Get current location to check for active route
+  const navigate = useNavigate(); // Get navigate function from react-router-dom
+
+  // Define navigation links
+  const navLinks = [
+    { to: "/", key: "landing" },
+    { to: "/impact", label: "Our Impact", key: "impact" },
+    { to: "/volunteerOpportunities", label: "Get Involved", key: "volunteer" },
+  ];
+
+  // Function to handle click on the Navbar.Brand and navigate to the landing page
+  const handleBrandClick = () => {
+    setSelectedLink(""); // Set to "landing" for active link highlight
+    navigate("/"); // Programmatically navigate to the landing page
+  };
 
   return (
     <Navbar expand="lg" className="custom-navbar">
-      <div className="container-fluid">
-        <Navbar.Brand href="/" className="brand-logo">
+      <Container>
+        <Navbar.Brand className="brand-logo" onClick={handleBrandClick}>
           <img src={headerIcon} alt="Logo" className="header-icon" />
           <div className="brand-text-container">
             <span className="brand-text">500HatsForRefugees</span>
             <span className="brand-subtext">Chicago, IL</span>
           </div>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <div className="navbar-nav nav-items-container">
-            <LandingPageLink
-              isSelected={selectedLink === 'landing'}
-              onClick={() => setSelectedLink('landing')}
-            />
-            <ImpactPageLink
-              isSelected={selectedLink === 'impact'}
-              onClick={() => setSelectedLink('impact')}
-            />
-            <VolunteerOpportunitiesLink
-              isSelected={selectedLink === 'volunteer'}
-              onClick={() => setSelectedLink('volunteer')}
-            />
-            <div className="login-signup-container">
-            <LoginLink
-              isSelected={selectedLink === 'login'}
-              onClick={() => setSelectedLink('login')}
-            />
-            <SignUpLink
-              isSelected={selectedLink === 'signup'}
-              onClick={() => setSelectedLink('signup')}
-            />
-          </div>
-          </div>
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="ms-auto">
+            {navLinks.map(({ to, label, key }) => (
+              <NavLink
+                key={key}
+                to={to}
+                className={`nav-item nav-link ${
+                  location.pathname === to ? "active-link" : ""
+                }`}
+              >
+                {label}
+              </NavLink>
+            ))}
+            {/* Login and Signup Buttons */}
+            <div className="login-signup-container ms-3">
+              <Button variant="dark" as={NavLink} to="/login">
+                LOG IN
+              </Button>
+              <Button variant="light" as={NavLink} to="/signUp">
+                SIGN UP
+              </Button>
+            </div>
+          </Nav>
         </Navbar.Collapse>
-      </div>
+      </Container>
     </Navbar>
   );
 };

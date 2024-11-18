@@ -5,6 +5,9 @@ import {getDatabase,  onValue, ref, update, get,} from "firebase/database"
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useCallback, useState, useEffect } from "react";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -23,7 +26,8 @@ const firebase = initializeApp(firebaseConfig);
 
 const database = getDatabase(firebase);
 const auth = getAuth(firebase);
-//google sign in
+const storage = getStorage(firebase);
+
 export { firebase, database, auth };
 
 export const signInWithGoogle = async() => {
@@ -110,3 +114,51 @@ export const useDbUpdate = (path) => {
 
     return [updateData, result];
 };
+
+
+//for rejecting an event/donation/image
+export const useDbRemove = () => {
+    const [result, setResult] = useState(null);
+
+    const removeData = useCallback(async (path) => {
+        try {
+            const dbRef = ref(database, path);
+            const snapshot = await get(dbRef);
+            if (snapshot.exists()) {
+                await remove(dbRef);
+                setResult({ message: `Removed successfully`, error: false });
+            } else {
+                setResult({ message: `Error: No data found at path: ${path}`, error: true });
+            }
+        } catch (error) {
+            setResult({ message: error.message, error: true });
+        }
+    }, []);
+
+    return [removeData, result];
+};
+// Upload image to Firebase Storage and return the image URL
+export const uploadImage = async (imageFile) => {
+    try {
+      const imageRef = storageRef(storage, `images/${imageFile.name}`);
+      await uploadBytes(imageRef, imageFile);
+      const imageUrl = await getDownloadURL(imageRef);
+      return imageUrl;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error;
+    }
+  };
+
+  // Update the submission data in the Firebase Realtime Database
+export const submitDataToDatabase = async (data) => {
+    try {
+      const dbRef = ref(database, 'submissions'); // Reference to your Firebase path
+      const newSubmissionRef = ref(database, 'submissions/' + Date.now()); // Use timestamp as unique ID
+      await update(newSubmissionRef, data);
+      console.log("Data submitted successfully:", data);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      throw error;
+    }
+  };
