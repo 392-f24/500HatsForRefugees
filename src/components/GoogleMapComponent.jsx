@@ -1,7 +1,7 @@
 
-// "AIzaSyAI7wOB4XNX5xCMJsuA-XqWlSlzxDRNU9c"
+
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import axios from 'axios';
 
 const containerStyle = {
@@ -10,8 +10,8 @@ const containerStyle = {
 };
 
 const defaultCenter = {
-  lat: 42.0451, // Latitude for Evanston, IL (ZIP code 60201)
-  lng: -87.6877 // Longitude for Evanston, IL (ZIP code 60201)
+  lat: 42.0451, // Default latitude (e.g., Chicago)
+  lng: -87.6877 // Default longitude (e.g., Chicago)
 };
 
 const getZoomLevel = (radius) => {
@@ -21,21 +21,13 @@ const getZoomLevel = (radius) => {
   return 8;
 };
 
+
 const GoogleMapComponent = ({ events, zipCode, radius }) => {
   const [markers, setMarkers] = useState([]);
   const [center, setCenter] = useState(defaultCenter);
   const [zoom, setZoom] = useState(getZoomLevel(radius));
   const [loading, setLoading] = useState(true);
 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAI7wOB4XNX5xCMJsuA-XqWlSlzxDRNU9c",
-    libraries: ['marker']
-  });
-
-  // Flag to determine if map is reloaded
-  const [isMapReady, setIsMapReady] = useState(false);
-
-  // Set markers when events change
   useEffect(() => {
     const fetchCoordinates = async () => {
       console.log('Fetching coordinates for events:', events);
@@ -63,61 +55,48 @@ const GoogleMapComponent = ({ events, zipCode, radius }) => {
     fetchCoordinates();
   }, [events]);
 
-  // Update center based on zip code
+
   useEffect(() => {
     const fetchCenterCoordinates = async () => {
       if (zipCode) {
-        console.log('Geocoding zip code:', zipCode);
         const coordinates = await geocodeAddress(zipCode);
         setCenter(coordinates);
-        console.log('Center set to coordinates:', coordinates);
       }
     };
 
     fetchCenterCoordinates();
   }, [zipCode]);
 
-  // Update zoom based on radius
   useEffect(() => {
     const zoomLevel = getZoomLevel(radius);
     setZoom(zoomLevel);
-    console.log('Zoom level set to:', zoomLevel);
   }, [radius]);
 
   const geocodeAddress = async (address) => {
     const apiKey = "AIzaSyAI7wOB4XNX5xCMJsuA-XqWlSlzxDRNU9c";
     const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}&callback=Function.prototype`
     );
     const { lat, lng } = response.data.results[0].geometry.location;
     return { lat, lng };
   };
 
-  // When map is loaded, set the flag to true
-  const handleMapLoad = () => {
-    setIsMapReady(true);
-    console.log('Map loaded');
-  };
-
   return (
     <LoadScript googleMapsApiKey="AIzaSyAI7wOB4XNX5xCMJsuA-XqWlSlzxDRNU9c">
-      {isLoaded && !loading ? (
+       {!loading && (
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
           zoom={zoom}
-          onLoad={handleMapLoad} // Use onLoad event to set map as ready
         >
           {markers.map((marker) => (
-            <MarkerF
+            <Marker
               key={marker.id}
               position={marker.position}
               title={marker.title}
             />
           ))}
         </GoogleMap>
-      ) : (
-        !isMapReady && <div>Loading...</div> // Display loading state while the map isn't ready
       )}
     </LoadScript>
   );

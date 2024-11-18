@@ -4,6 +4,7 @@ import { Card, Button } from 'react-bootstrap';
 import './VolunteerOpportunitiesPage.css';
 import AddEvent from '../components/AddEvent';
 import GoogleMapComponent from '../components/GoogleMapComponent';
+import './Pages.css'
 
 const VolunteerOpportunitiesPage = () => {
   const [filterType, setFilterType] = useState('all');
