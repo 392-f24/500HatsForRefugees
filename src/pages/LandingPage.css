@@ -1,0 +1,81 @@
+.LandingPage-container {
+    background-color: #FAF5F2;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    height: 100vh;
+    padding-top: 50px;
+    gap: 50px; /* Add spacing between sections */
+}
+
+.VolunteerWithUsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #583D3D;
+    width: 80%;
+    max-width: 1200px;
+    min-width: 700px;
+    border-radius: 30px;
+    overflow: hidden; /* Clips content, including the image */
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.VWU-left {
+    grid-column: 1;
+    padding: 20px;
+}
+
+.VWU-right {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures the image is clipped to the container */
+}
+
+.titleVolunteer {
+    text-align: left;
+    font-family: 'Archivo Black', sans-serif;
+    color: #EEBF46;
+    margin: 0;
+}
+
+.titleWithUs {
+    text-align: left;
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    margin: 0;
+}
+
+.landingDescription {
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    margin-top: 20px;
+    padding-right: 20px;
+}
+
+.imageContainer {
+    width: 100%;
+    height: 120%;
+    object-fit: cover; /* Ensures the image fills the entire space */
+    border-radius: inherit; /* Inherit border-radius from the parent */
+    display: block;
+}
+
+.volunteer-button {
+    background-color:#EEBF46;
+    color: #583D3D;
+    border-radius: 10px;
+    font-family: 'Archivo', sans-serif;
+    padding:5px;
+    margin-top:10px;
+}
+
+.UpcomingEvents {
+    font-family: 'Archivo Black', sans-serif;
+    color: #C57979;
+    margin-top: 20px;
+}
