@@ -17,18 +17,16 @@ import '@fontsource/archivo-black';
 
 const App = () => {
   const location = useLocation();
-  console.log('Current path:', location.pathname);
 
-  let navbar;
-  if (!['/adminlogin', '/admindashboard'].includes(location.pathname.toLowerCase())) {
-    navbar = <Navigationbar />;
-  }
+  // Conditionally render the navbar for non-admin routes
+  const showNavbar = !['/adminlogin', '/admindashboard'].includes(location.pathname.toLowerCase());
 
   return (
     <div className="App-header">
-      {navbar}
+      {showNavbar && <Navigationbar />}
       <div className="content flex-grow">
         <Routes>
+          {/* Set up the routes correctly */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/impact" element={<ImpactPage />} />
           <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />

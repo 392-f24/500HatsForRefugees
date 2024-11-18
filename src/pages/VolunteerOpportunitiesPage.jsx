@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useDbData, useDbRemove, useDbUpdate } from '../utilities/firebase.js';
-import './VolunteerOpportunities.css'
+import './Pages.css'
 import AddEvent from '../components/AddEvent';
 
 const VolunteerOpportunitiesPage = () => {
@@ -11,13 +11,16 @@ const VolunteerOpportunitiesPage = () => {
   // const [updateData] = useDbUpdate(`/Cart/${cartId}`);
 
   return (
-    <div>
+    <div className="pageWrapper">
 
       {/* Main content for the Volunteer Opportunities Page goes here */}
       <div className="GetInvolved-container">
-        <h1>Volunteer Opportunities</h1>
-        <p>Find out how you can get involved and help make a difference.</p>
-        {/* Add volunteer opportunities, maps, or other content as needed */}
+        <h1 className="title">Volunteer Opportunities</h1>
+        <h5 className="subtitle">Find out how you can get involved and help make a difference.</h5>
+        <h4 className="sectionTitle"> Upcoming Events</h4>
+
+        <h4 className="sectionTitle"> About Our Events</h4>
+
 
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <button className="addEvent-button" onClick={() => setAddEvent(true)}>

@@ -212,7 +212,7 @@ const AddEvent = ({ closeModal }) => {
                                 <select
                                     value={requirements ? "yes" : "no"}
                                     onChange={(e) => setRequirements(e.target.value === "yes")}
-                                    className="requirements-dropdown"
+                                    className=" input requirements-dropdown"
                                 >
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
