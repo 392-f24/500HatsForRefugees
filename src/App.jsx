@@ -17,9 +17,11 @@ const App = () => {
   console.log('Current path:', location.pathname);
 
   let navbar;
-  if (!['/adminlogin', '/admindashboard'].includes(location.pathname.toLowerCase())) {
-    navbar = <Navigationbar />;
+  if (!location.pathname.toLowerCase().includes('/adminlogin') &&
+    !location.pathname.toLowerCase().includes('/admindashboard')) {
+  navbar = <Navigationbar />;
   }
+
 
   return (
     <div className="App-header">
@@ -30,7 +32,7 @@ const App = () => {
           <Route path="/impact" element={<ImpactPage />} />
           <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
           <Route path="/adminLogin" element={<AdminLogin />} />
-          <Route path="/adminDashboard" element={<AdminControlDashboard />} />
+          <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
         </Routes>
       </div>
     </div>
