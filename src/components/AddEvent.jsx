@@ -103,7 +103,7 @@ const AddEvent = ({ closeModal }) => {
                 </div>
                 <h4 className="titleSection">Logistics</h4>
 
-                <div className="body">
+                <div className="modalBody">
                     {/* Event Type Dropdown */}
                     
                     <p className="inputSection">Event type</p>
@@ -167,7 +167,7 @@ const AddEvent = ({ closeModal }) => {
                                 placeholder="Hats Needed"
                             />
 
-                            <p className="inputSection">Demographics of serving population</p>
+                            <p className="inputSection">Demographics of serving population (Enter a number for each group's percentage)</p>
                             <input
                                 className="input fullWidth "
                                 type="number"

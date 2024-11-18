@@ -30,8 +30,6 @@
     padding: 25px;
 }
 
-
-
 .title {
     text-align: center;
     /* font-family: 'Josefin Sans'; */
@@ -44,7 +42,7 @@
     display: block;
     /* width: 80%; */
     margin: 0 auto;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     font-family: 'Archivo Black', sans-serif;
     color: #FFDF8F;
 }
@@ -101,16 +99,17 @@
     font-size: 25px;
     cursor: pointer;
 }
-
-/* .body {
+.modalBody {
     display: flex;
-    color: black;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 80%;        
-    text-align: center; 
-} */
+    justify-content: center;
+    width: 100%;
+    padding: 20px; /* Add padding to avoid content touching the edges */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+
 
 .address {
     display: grid;
@@ -170,6 +169,7 @@
     /* margin: 10px; */
     width: 100%;            
     padding: 5px;
+    margin-bottom: 10px;
 }
 
 .subInput {
