@@ -1,0 +1,106 @@
+/* VolunteerOpportunitiesPage.css */
+
+.title {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .filters {
+    margin-bottom: 20px;
+  }
+  
+  .filters label {
+    margin-bottom: 10px;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 100%; /* Ensure the content wrapper takes full height */
+  }
+  
+  .eventsList {
+    flex: 1;
+    margin-right: 20px;
+    height: 450px;
+    overflow-y: auto; 
+  }
+  
+  .mapContainer {
+    flex: 2;
+    height: 450px; 
+  }
+  
+  .event-card {
+    margin-bottom: 20px;
+  }
+  
+.filterControls {
+    background-color: #FAF5F2;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex; /* Use Flexbox to arrange items horizontally */
+    gap: 20px; /* Add space between items */
+  }
+  
+.filterControls label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0; 
+}
+
+.filterControls select,
+.filterControls input {
+    width: auto; 
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+  
+.event-card {
+    margin-bottom: 20px;
+    background-color: #C57979;
+    color: white; 
+  }
+  
+.event-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.15em;
+}
+
+.event-title {
+    color: black; 
+    font-weight: bold;
+}
+
+.more-info-button {
+    background-color: #EEBF46; 
+    color: black; 
+    font-size: 1.2em;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; 
+    cursor: pointer; 
+    text-align: center;
+    display: inline-block; 
+    font-size: 16px; 
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  

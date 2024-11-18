@@ -1,3 +1,5 @@
+// AddEvent.jsx
+
 import React, { useState } from 'react';
 import './AddEvent.css';
 import { useDbUpdate, useAuthState } from '../utilities/firebase';
@@ -9,11 +11,17 @@ const AddEvent = ({ closeModal }) => {
 
     const [eventType, setEventType] = useState('Hats and Hot Chocolate');
     const [eventStatus] = useState('pending');
-    const [requesterID] = useState(user?.uid);
+    const [requesterID] = useState(user ? user.uid : 'TemporaryRequesterID');
     const [location, setLocation] = useState('');
     const [date, setDate] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
+
+    // Address fields
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
 
     // Additional fields for "Hats and Hot Chocolate"
     const [hispanicLatino, setHispanicLatino] = useState('');
@@ -33,7 +41,7 @@ const AddEvent = ({ closeModal }) => {
     };
 
     const handleSave = async () => {
-        if (!eventType || !location || !date || !startTime || !endTime) {
+        if (!eventType || !location || !date || !startTime || !endTime || !street || !city || !state || !zip) {
             console.error("Please fill in all required fields.");
             return;
         }
@@ -45,16 +53,22 @@ const AddEvent = ({ closeModal }) => {
         }
 
         const newEventId = Date.now().toString();
+        const fullAddress = `${street}, ${city}, ${state} ${zip}`;
         const newEvent = {
             Type: eventType,
             EventStatus: eventStatus,
-            RequesterID: "TemporaryRequesterID",
+            RequesterID: requesterID,
             Location: location,
             Date: date,
             Time: {
                 startTime,
                 endTime
-            }
+            },
+            Address: fullAddress,
+            Street: street,
+            City: city,
+            State: state,
+            Zip: zip
         };
 
         if (eventType === 'Hats and Hot Chocolate') {
@@ -81,7 +95,7 @@ const AddEvent = ({ closeModal }) => {
 
     // Validation for enabling the Save button
     const isSaveDisabled = () => {
-        if (!eventType || !location || !date || !startTime || !endTime) return true;
+        if (!eventType || !location || !date || !startTime || !endTime || !street || !city || !state || !zip) return true;
         if (eventType === 'Hats and Hot Chocolate') {
             return (
                 !hatsNeeded ||
@@ -95,6 +109,26 @@ const AddEvent = ({ closeModal }) => {
         return false;
     };
 
+    // Function to autofill the form with demo data
+    const autofillDemoData = () => {
+        setEventType('Hats and Hot Chocolate');
+        setLocation('Evanston Library');
+        setDate('2024-11-21');
+        setStartTime('10:00');
+        setEndTime('14:00');
+        setStreet('1703 Orrington Ave');
+        setCity('Evanston');
+        setState('IL');
+        setZip('60201');
+        setHispanicLatino('30');
+        setAsian('20');
+        setWhite('25');
+        setAfricanAmerican('15');
+        setAmericanIndian('10');
+        setHatsNeeded('50');
+        setRequirements(true);
+    };
+
     return (
         <div className="modalBackground" onClick={handleOverlayClick}>
             <div className="modalContainer">
@@ -105,20 +139,17 @@ const AddEvent = ({ closeModal }) => {
 
                 <div className="modalBody">
                     {/* Event Type Dropdown */}
-                    
                     <p className="inputSection">Event type</p>
                     <select
                         className="input fullWidth"
                         value={eventType}
                         onChange={(e) => setEventType(e.target.value)}
                     >
-                       
                         <option value="Hats and Hot Chocolate">Hats and Hot Chocolate</option>
                         <option value="Hat Knitting">Hat Knitting</option>
                     </select>
 
                     <p className="inputSection">Location</p>
-
                     <input
                         className="input fullWidth"
                         value={location}
@@ -152,12 +183,43 @@ const AddEvent = ({ closeModal }) => {
                         placeholder="End Time"
                     />
 
-                    {/* Conditionally render additional fields for Hats and Hot Chocolate */}
+                    {/* Address Fields */}
+                    <p className="inputSection">Street</p>
+                    <input
+                        className="input fullWidth"
+                        value={street}
+                        onChange={(e) => setStreet(e.target.value)}
+                        placeholder="Enter street"
+                    />
 
-                    
+                    <p className="inputSection">City</p>
+                    <input
+                        className="input fullWidth"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        placeholder="Enter city"
+                    />
+
+                    <p className="inputSection">State</p>
+                    <input
+                        className="input fullWidth"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        placeholder="Enter state"
+                    />
+
+                    <p className="inputSection">Zip Code</p>
+                    <input
+                        className="input fullWidth"
+                        value={zip}
+                        onChange={(e) => setZip(e.target.value)}
+                        placeholder="Enter zip code"
+                    />
+
+                    {/* Conditionally render additional fields for Hats and Hot Chocolate */}
                     {eventType === 'Hats and Hot Chocolate' && (
                         <>
-                        <h4 className="titleSection">Hats & Hot Chocolate</h4>
+                            <h4 className="titleSection">Hats & Hot Chocolate</h4>
                             <p className="inputSection">Around How many hats are needed?</p>
                             <input
                                 className="input fullWidth"
@@ -203,28 +265,20 @@ const AddEvent = ({ closeModal }) => {
                                 onChange={(e) => setAmericanIndian(e.target.value)}
                                 placeholder="American Indian"
                             />
-                            <p className="inputSection"> Does your venue meet the requirements below:</p>
-                            <p className="requirementsText"> Access to Electric Plug</p>
-                            <p className="requirementsText"> Access to Drinking Water</p>
-                            <p className="requirementsText"> Tables</p>
-                            <p className="requirementsText"> Light</p>
-                            <label className="dropdown-label">
-                                <select
-                                    value={requirements ? "yes" : "no"}
-                                    onChange={(e) => setRequirements(e.target.value === "yes")}
-                                    className=" input requirements-dropdown"
-                                >
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                </select>
-                            </label>
                         </>
                     )}
                 </div>
 
-                <div className="footer">
-                    <button id="cancelBtn" onClick={() => closeModal(false)}>Cancel</button>
-                    <button id="saveBtn" onClick={handleSave} disabled={isSaveDisabled()}>Add Event</button>
+                <div className="modalFooter">
+                    <button className="saveButton" onClick={handleSave} disabled={isSaveDisabled()}>
+                        Save
+                    </button>
+                    <button className="cancelButton" onClick={() => closeModal(false)}>
+                        Cancel
+                    </button>
+                    <button className="demoButton" onClick={autofillDemoData}>
+                        Autofill Demo Data
+                    </button>
                 </div>
             </div>
         </div>
