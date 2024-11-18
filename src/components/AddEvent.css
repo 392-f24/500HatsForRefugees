@@ -47,6 +47,35 @@
     margin: 0;
     padding: 0;
 }
+.inputSection {
+    text-align: center;
+    margin-top: 10px;
+    /* font-family: 'Josefin Sans'; */
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    /* font-weight: bold; */
+}
+.requirementsText{
+    text-align: center;
+    margin-bottom: -5px;
+    /* font-family: 'Josefin Sans'; */
+    font-family: 'Archivo', sans-serif;
+    color: white;
+    /* font-weight: bold; */
+}
+
+.dropdown-label {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .requirements-dropdown {
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 1rem;
+  }
+  
 
 
 .titleCloseBtn {

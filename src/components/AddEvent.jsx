@@ -106,7 +106,7 @@ const AddEvent = ({ closeModal }) => {
                 <div className="body">
                     {/* Event Type Dropdown */}
                     
-                    <p >Event type</p>
+                    <p className="">Event type</p>
                     <select
                         className="input fullWidth"
                         value={eventType}
@@ -189,13 +189,20 @@ const AddEvent = ({ closeModal }) => {
                                 onChange={(e) => setAmericanIndian(e.target.value)}
                                 placeholder="American Indian"
                             />
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={requirements}
-                                    onChange={(e) => setRequirements(e.target.checked)}
-                                />
-                                Requirements Met
+                            <p className="inputSection"> Does your venue meet the requirements below:</p>
+                            <p className="requirementsText"> Access to Electric Plug</p>
+                            <p className="requirementsText"> Access to Drinking Water</p>
+                            <p className="requirementsText"> Tables</p>
+                            <p className="requirementsText"> Light</p>
+                            <label className="dropdown-label">
+                                <select
+                                    value={requirements ? "yes" : "no"}
+                                    onChange={(e) => setRequirements(e.target.value === "yes")}
+                                    className="requirements-dropdown"
+                                >
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
                             </label>
                         </>
                     )}
