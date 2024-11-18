@@ -10,7 +10,7 @@ import GoogleMapComponent from '../components/GoogleMapComponent';
 const VolunteerOpportunitiesPage = () => {
   const [filterType, setFilterType] = useState('all');
   const [zipCode, setZipCode] = useState('60201');
-  const [radius, setRadius] = useState(5);
+  const [radius, setRadius] = useState(null); // Set initial radius to null
   const [filteredEvents, setFilteredEvents] = useState([]);
   
   const [showAddEvent, setAddEvent] = useState(false);
@@ -23,7 +23,7 @@ const VolunteerOpportunitiesPage = () => {
     setZipCode(e.target.value);
   };
   const handleRadiusChange = (e) => {
-    setRadius(e.target.value);
+    setRadius(e.target.value ? parseFloat(e.target.value) : null); // Convert to float or set to null
   };
 
 
@@ -53,7 +53,7 @@ const VolunteerOpportunitiesPage = () => {
 
   useEffect(() => {
     const filterEventsByDistance = async () => {
-      if (!events || !zipCode || !radius) return;
+      if (!events || !zipCode) return;
 
       console.log('Filtering events by distance...');
       console.log('ZIP Code:', zipCode);
@@ -74,6 +74,7 @@ const VolunteerOpportunitiesPage = () => {
       );
 
       const filteredEventIds = eventCoordinates.filter(({ coordinates }) => {
+        if (radius === null) return true; // Include all events if radius is not set
         const distanceInMiles = calculateDistance(zipCodeCoordinates, coordinates);
         console.log(`Distance to event ${coordinates.eventId}:`, distanceInMiles);
         return distanceInMiles <= radius;
@@ -123,7 +124,8 @@ const VolunteerOpportunitiesPage = () => {
           </label>
           <label>
             Radius (miles):
-            <select value={radius} onChange={handleRadiusChange}>
+            <select value={radius || ''} onChange={handleRadiusChange}>
+              <option value="">All</option>
               <option value="5">5 miles</option>
               <option value="10">10 miles</option>
               <option value="20">20 miles</option>
