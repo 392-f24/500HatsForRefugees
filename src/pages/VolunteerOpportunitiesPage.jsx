@@ -5,6 +5,7 @@ import './VolunteerOpportunitiesPage.css';
 import axios from 'axios';
 import './Pages.css'
 import AddEvent from '../components/AddEvent';
+import DonationForm from '../components/DonationForm';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 
 const VolunteerOpportunitiesPage = () => {
@@ -12,8 +13,9 @@ const VolunteerOpportunitiesPage = () => {
   const [zipCode, setZipCode] = useState('60201');
   const [radius, setRadius] = useState(null); // Set initial radius to null
   const [filteredEvents, setFilteredEvents] = useState([]);
-  
+
   const [showAddEvent, setAddEvent] = useState(false);
+  const [showDonationForm, setShowDonationForm] = useState(false);
   const [events, eventsError] = useDbData('/events'); // Fetch events data from Firebase
 
   const handleFilterChange = (e) => {
@@ -100,6 +102,8 @@ const VolunteerOpportunitiesPage = () => {
           <AddEvent closeModal={() => setAddEvent(false)} />
         )}
 
+        {showDonationForm && <DonationForm closeModal={() => setShowDonationForm(false)} />}
+
         <h4 className="sectionTitle">Upcoming Events</h4>
 
         {/* Filter Controls */}
@@ -153,9 +157,12 @@ const VolunteerOpportunitiesPage = () => {
             </div>
           </div>
         )}
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ paddingTop: "2.0rem", paddingBottom: "2.0rem", display: "flex-column", justifyContent: "center", alignItems: "center" }}>
           <button className="addEvent-button" onClick={() => setAddEvent(true)}>
             Request an Event
+          </button>
+          <button className="addEvent-button" onClick={() => setShowDonationForm(true)}>
+            Donate Today!
           </button>
         </div>
       </div>

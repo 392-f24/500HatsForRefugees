@@ -189,14 +189,14 @@ const DonationForm = ({ closeModal }) => {
             placeholder="ZIP Code"
           />
         </div>
-        <div className="footer">
-          <button id="cancelBtn" onClick={() => closeModal(false)}>
-            Cancel
-          </button>
-          <button id="saveBtn" onClick={handleSubmit} disabled={isSubmitDisabled()}>
+        <div className="modalFooter">
+          <button id="saveButton" onClick={handleSubmit} disabled={isSubmitDisabled()}>
             Donate
           </button>
-          <button id="demoBtn" onClick={fillDemoData}>
+          <button id="cancelButton" onClick={() => closeModal(false)}>
+            Cancel
+          </button>
+          <button id="demoButton" onClick={fillDemoData}>
             Autofill Demo Data
           </button>
         </div>
