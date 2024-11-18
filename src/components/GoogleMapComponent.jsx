@@ -18,7 +18,8 @@ const getZoomLevel = (radius) => {
   if (radius <= 5) return 14;
   if (radius <= 10) return 12;
   if (radius <= 20) return 10;
-  return 8;
+  if (null) return 8; // Set default zoom level
+  // return 8;
 };
 
 
