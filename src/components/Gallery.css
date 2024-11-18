@@ -10,14 +10,14 @@
     display: flex;
     gap: 20px;
     width: max-content;
-    animation: slideImages 100s infinite linear; /* Slide the images across */
+    animation: slideImages var(--animation-duration, 100s) infinite linear; /* Slide the images across */
   }
   
   .image-row {
     display: grid;
     grid-template-rows: repeat(3, 150px);
     gap: 10px;
-    width: 10%;
+    width: 200px;
   }
   
   .gallery-image-container {
@@ -46,10 +46,7 @@
   }
   
   /* Make sure the gallery resets when reaching the end to create the loop */
-  .image-gallery {
-    animation-timing-function: linear;
-    animation-duration: 100s; /* Control the speed of the sliding */
-  }
+
   
   /* Make the gallery responsive */
   @media (max-width: 768px) {

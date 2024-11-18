@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* Modal Background and Border */
+.submit-photo-modal .modal-content {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.submit-photo-modal .modal-header {
+    background-color: #C57979;
+    color: #FFFFFF;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.submit-photo-modal .modal-footer {
+    background-color: #F8F8F8;
+    border-top: 1px solid #D9D9D9;
+    justify-content: center;
+}
+
+/* Input Field Styles */
+.custom-input, .custom-textarea {
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    padding: 8px;
+}
+
+.custom-input:focus, .custom-textarea:focus {
+    border-color: #583D3D;
+    box-shadow: 0 0 5px rgba(88, 61, 61, 0.5);
+}
+
+.cancel-button {
+    background-color: #000000;
+    border-radius: 20px;
+    color: #A49A93;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+}
+.cancel-button:hover {
+    background-color: #8e44ad;
+}
+.submit-button {
+    background-color: #A49A93;
+    border-radius: 20px;
+    color: #583D3D;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+}
+
+.submit-button:hover {
+    background-color: #8e44ad;
+}
+
+/* Error Feedback */
+.form-control.is-invalid {
+    border-color: #FF6B6B;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+.form-control-feedback {
+    color: #FF6B6B;
+    font-size: 0.875rem;
+}
+
+/* Spinner */
+.spinner-border {
+    color: #583D3D;
+}
+
+/* Adjust Modal Body Padding */
+.submit-photo-modal .modal-body {
+    padding: 30px;
+}
+
+/* Title Styling */
+.submit-photo-modal .modal-title {
+    font-family: 'Inter', sans-serif; /* Apply Inter font */
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin: 10px;
+}
+
+/* Labels */
+.submit-photo-modal .form-label {
+    font-weight: bold;
+    color: #583D3D;
+    font-size: 16px;
+}
+
+/* Placeholders */
+.submit-photo-modal .form-control::placeholder {
+    color: #C57979;
+}

@@ -1,34 +1,61 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Container, Row, Col, Modal } from 'react-bootstrap';
+
+import { Container, Row, Col, Modal, Spinner } from 'react-bootstrap';
+import { useDbData } from '../utilities/firebase'; // Import the useDbData hook
 import './Gallery.css'; // For custom styles
-const images = [
-    "/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg", "/images/image4.jpg",
-    "/images/image5.jpg", "/images/image6.jpg", "/images/image7.jpg", "/images/image8.jpg",
-    "/images/image9.jpg", "/images/image10.jpg", "/images/image11.jpg", "/images/image12.jpg",
-    "/images/image1.jpg", "/images/image2.jpg", "/images/image3.jpg", "/images/image4.jpg",
-    "/images/image5.jpg", "/images/image6.jpg", "/images/image7.jpg", "/images/image8.jpg",
-    "/images/image9.jpg", "/images/image10.jpg", "/images/image11.jpg", "/images/image12.jpg"
-  ];
+
 const Gallery = () => {
+    // const [images, setImages] = useState(null);
     const [isAnimating, setIsAnimating] = useState(true); // State to track if animation is running
     const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
     const [selectedImage, setSelectedImage] = useState(null); // Track clicked image
-
     const [pausedOffset, setPausedOffset] = useState(0); // To track current animation position
     const galleryRef = useRef(null); // Ref for the gallery
 
   
     const imagesPerRow = 3; // 3 images per row
-    const totalRows = Math.ceil(images.length / imagesPerRow); // Calculate rows based on image count
-    // const imagesPerPage = imagesPerRow * totalRows; // 12 images per page
 
-    const visibleImages = images;
+    const [images, imagesError] = useDbData('submissions'); // Fetch images from Firebase Realtime Database
+    console.log(images)
+    useEffect(() => {
+        if (galleryRef.current) {
+            const galleryWidth = galleryRef.current.scrollWidth; // Total width of the gallery
+            const speed = 10; // Desired speed in pixels per second
+            const duration = galleryWidth / speed; // Calculate duration based on speed
+
+            // Set CSS variable for animation duration
+            galleryRef.current.style.setProperty('--animation-duration', `${duration}s`);
+
+        }
+    }, images); // Only re-run the effect if `images` changes (i.e., after data is fetched)
+
+  // Handle errors if fetching images fails
+    if (imagesError) {
+        console.error("Error fetching images:", imagesError);
+        return <div>Error loading images. Please try again later.</div>;
+    }
+
+    if (!images) {
+        return (
+          <div className="loading-container">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            <p>Loading images...</p>
+          </div>
+        );
+    }
+
+    const totalRows = Math.ceil(Object.keys(images).length / imagesPerRow);
+
+    const visibleImages = Object.keys(images).map(key => images[key]);
+
     // Function to stop animation when an image is clicked
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
-    setIsModalOpen(true); // Open modal
+    const handleImageClick = (image) => {
+        setSelectedImage(image);
+        setIsModalOpen(true); // Open modal
 
-    const gallery = galleryRef.current;
+        const gallery = galleryRef.current;
 
       const computedStyle = window.getComputedStyle(gallery);
       const matrix = computedStyle.transform || "matrix(1, 0, 0, 1, 0, 0)";
@@ -46,7 +73,7 @@ const Gallery = () => {
         gallery.style.animationPlayState = "running";
         setIsAnimating(!isAnimating);
     };
-
+     
   return (
     <Container className="gallery-container">
       <Row className="justify-content-center">
@@ -62,11 +89,9 @@ const Gallery = () => {
               <div key={rowIndex} className="image-row">
                 {visibleImages.slice(rowIndex * imagesPerRow, (rowIndex + 1) * imagesPerRow).map((image, imageIndex) => (
                   <div className="gallery-image-container" key={imageIndex} onClick={() => handleImageClick(image)}>
-                    <img
-                      src={image}
-                      alt={`gallery-image-${imageIndex}`}
-                      className="gallery-image"
-                    />
+                    <img src={image.imageUrl}
+                    alt={`gallery-image-${imageIndex}`}
+                    className="gallery-image" />
                   </div>
                 ))}
               </div>
@@ -82,20 +107,20 @@ const Gallery = () => {
         dialogClassName="image-popup-modal"
       >
         <Modal.Body>
-        <div className="modal-content-container">
+        {selectedImage && <div className="modal-content-container">
           <div className="image-details">
-            <h5>NAME{/*{selectedImage.name}*/}</h5>
-            <p><strong>Date:</strong> {/*{selectedImage.date}*/}</p>
-            <p><strong>Location:</strong> {/*{selectedImage.location}*/}</p>
-            <p><strong>Message:</strong> {/*{selectedImage.message}*/}</p>
+            <h5>{selectedImage.name}</h5>
+            <p><strong>Date:</strong> {(Date(selectedImage.timestamp))}</p>
+            <p><strong>Location:</strong> {selectedImage.town}, {selectedImage.state}</p>
+            <p><strong>Message:</strong> {selectedImage.message}</p>
           </div>
           <img
-            src={selectedImage}
+            src={selectedImage?.imageUrl} 
             alt="Selected"
             className="enlarged-image"
           />
          
-        </div>
+        </div>}
         </Modal.Body>
       </Modal>
 

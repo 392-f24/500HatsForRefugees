@@ -9,8 +9,6 @@ import SubmitPhotoModal from '../components/SubmitPhotoModal';
 const ImpactPage = () => {
   const [modalShow, setModalShow] = useState(false);
 
-    // Example: Passing a current user's name
-    const currentUserName = "John Doe";
   return (
     <div className="page-container">
       <div>
@@ -30,7 +28,6 @@ const ImpactPage = () => {
       <SubmitPhotoModal
                 show={modalShow}
                 handleClose={() => setModalShow(false)}
-                currentUserName={currentUserName}
             />
     </div>
   );
