@@ -115,6 +115,28 @@ export const useDbUpdate = (path) => {
     return [updateData, result];
 };
 
+
+//for rejecting an event/donation/image
+export const useDbRemove = () => {
+    const [result, setResult] = useState(null);
+
+    const removeData = useCallback(async (path) => {
+        try {
+            const dbRef = ref(database, path);
+            const snapshot = await get(dbRef);
+            if (snapshot.exists()) {
+                await remove(dbRef);
+                setResult({ message: `Removed successfully`, error: false });
+            } else {
+                setResult({ message: `Error: No data found at path: ${path}`, error: true });
+            }
+        } catch (error) {
+            setResult({ message: error.message, error: true });
+        }
+    }, []);
+
+    return [removeData, result];
+};
 // Upload image to Firebase Storage and return the image URL
 export const uploadImage = async (imageFile) => {
     try {

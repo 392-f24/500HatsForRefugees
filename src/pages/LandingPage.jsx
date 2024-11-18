@@ -1,16 +1,20 @@
 // LandingPage.jsx
 
 import { useState, useEffect } from 'react';
+import { useDbData, useDbRemove, useDbUpdate } from '../utilities/firebase.js';
+import './Pages.css'
 
 const LandingPage = () => {
   return (
     <div>
 
-      {/* Main content for the Landing Page goes here */}
-      <div className="landing-page-content">
-        <h1>Welcome to 500 Hats For Refugees</h1>
-        <p>This is where you can put the main content for your landing page.</p>
-        {/* Add more content, images, or components as needed */}
+    <div className="LandingPage-container">
+        <h1 className="title">Landing Page</h1>
+        <h5 className="subtitle">Find out how you can get involved and help make a difference.</h5>
+
+
+
+
       </div>
     </div>
   );

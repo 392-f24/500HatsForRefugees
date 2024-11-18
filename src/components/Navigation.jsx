@@ -10,6 +10,7 @@ const Navigationbar = () => {
   const location = useLocation(); // Get current location to check for active route
   const navigate = useNavigate(); // Get navigate function from react-router-dom
 
+  // Define navigation links
   const navLinks = [
     { to: "/", key: "landing" },
     { to: "/impact", label: "Our Impact", key: "impact" },
@@ -32,42 +33,26 @@ const Navigationbar = () => {
             <span className="brand-subtext">Chicago, IL</span>
           </div>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
             {navLinks.map(({ to, label, key }) => (
               <NavLink
                 key={key}
                 to={to}
                 className={`nav-item nav-link ${
-                  (location.pathname === to || selectedLink === key) ? "active-link" : ""
+                  location.pathname === to ? "active-link" : ""
                 }`}
-                onClick={() => setSelectedLink(key)}
               >
                 {label}
               </NavLink>
             ))}
+            {/* Login and Signup Buttons */}
             <div className="login-signup-container ms-3">
-              <Button
-                variant="dark"
-                className={`login-btn ${
-                  selectedLink === "login" ? "active-link" : ""
-                }`}
-                onClick={() => setSelectedLink("login")}
-                as={NavLink}
-                to="/login"
-              >
+              <Button variant="dark" as={NavLink} to="/login">
                 LOG IN
               </Button>
-              <Button
-                variant="light"
-                className={`sign-up ${
-                  selectedLink === "signup" ? "active-link" : ""
-                }`}
-                onClick={() => setSelectedLink("signup")}
-                as={NavLink}
-                to="/signUp"
-              >
+              <Button variant="light" as={NavLink} to="/signUp">
                 SIGN UP
               </Button>
             </div>

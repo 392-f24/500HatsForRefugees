@@ -1,0 +1,49 @@
+.pageWrapper{
+    height: 100vh;
+}
+.GetInvolved-container{
+    background-color: #FAF5F2;
+    height: 100vh;
+
+}
+.LandingPage-container{
+    background-color: #FAF5F2;
+    height: 100vh;
+
+}
+.title {
+    text-align: center;
+    padding: 30px;
+    font-family: 'Archivo Black', sans-serif;
+    color: #EEBF46 !important; /* Add !important to force the color */
+}
+.subtitle {
+    text-align: center;
+    /* padding: 30px; */
+    font-family: 'Archivo Black', sans-serif;
+    color: #EEBF46 !important; /* Add !important to force the color */
+    margin-top:-10px;
+}
+
+.sectionTitle {
+    text-align: center;
+    /* padding: 30px; */
+    font-family: 'Archivo', sans-serif;
+    color: #EEBF46 !important; /* Add !important to force the color */
+    margin-top:50px;
+}
+
+.addEvent-button {
+    background-color: #EEBF46;
+    color: #000000;
+    padding: 10px 15px;
+    border-radius: 16px;
+    font-size: 22px;
+    font-family: 'Archivo', sans-serif;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s;
+    display: block; /* Makes it a block element */
+    margin: 20px auto; /* Centers the button */
+    text-align: center;
+}
