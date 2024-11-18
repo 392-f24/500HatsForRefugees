@@ -49,10 +49,10 @@ const Navigationbar = () => {
             ))}
             {/* Login and Signup Buttons */}
             <div className="login-signup-container ms-3">
-              <Button variant="dark" as={NavLink} to="/login">
+              <Button className="login-btn" variant="dark" as={NavLink} to="/login">
                 LOG IN
               </Button>
-              <Button variant="light" as={NavLink} to="/signUp">
+              <Button className="sign-up" variant="light" as={NavLink} to="/signUp">
                 SIGN UP
               </Button>
             </div>

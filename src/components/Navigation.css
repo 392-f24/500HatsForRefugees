@@ -49,9 +49,10 @@
 .nav-item {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
-  color: #faf5f2;
+  color: #faf5f2 !important;
   text-decoration: none;
   transition: color 0.3s ease; /* Smooth transition for color changes */
+  white-space: nowrap; /* Prevent line breaks */
 }
 
 .nav-link:hover,
@@ -76,6 +77,7 @@
   text-align: center;
   width: 120px !important; /* Ensure buttons are the same width */
   height: 40px !important; /* Ensure buttons are the same height */
+  white-space: nowrap; /* Prevent line breaks */
 }
 
 /* Login button */
@@ -85,6 +87,7 @@
   background-color: #000;
   color: #faf5f2;
   border: 2px solid #000;
+  white-space: nowrap; /* Prevent line breaks */
 }
 
 .login-btn:hover {
@@ -105,6 +108,7 @@
   background-color: #faf5f2;
   color: #4e342e;
   border: 2px solid #faf5f2;
+  white-space: nowrap; /* Prevent line breaks */
 }
 
 .sign-up:hover {
