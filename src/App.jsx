@@ -33,7 +33,7 @@ const App = () => {
             <Route path="/impact" element={<ImpactPage />} />
             <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
             <Route path="/adminLogin" element={<AdminLogin />} />
-            <Route path="/adminDashboard" element={<AdminControlDashboard />} />
+            <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
           </Routes>
         </div>
      </div>
