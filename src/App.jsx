@@ -26,7 +26,7 @@ const App = () => {
     <div className="App-header">
       {showNavbar && <Navigationbar />}
       <div className="content flex-grow">
-        {/* <<<<<<< HEAD
+{/* <<<<<<< HEAD
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/impact" element={<ImpactPage />} />
