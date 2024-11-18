@@ -13,7 +13,6 @@
 .brand-text-container {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Added spacing between main text and subtext */
   cursor: pointer; /* Makes the text clickable */
 }
 
@@ -23,6 +22,7 @@
   font-size: 2rem; /* Slightly larger font for the main brand text */
   font-weight: 600;
   letter-spacing: 0.07em;
+  margin-bottom: -10px;
 }
 
 .brand-subtext {
@@ -37,7 +37,7 @@
 .custom-navbar {
   background-color: #4e342e; /* Dark brown */
   border-bottom: 3px solid #8e44ad; /* Purple border */
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   position: fixed;   /* Makes the element fixed to the viewport */
   top: 0;            /* Position it at the top */
   left: 0;           /* Optional: to make sure it's aligned to the left */
