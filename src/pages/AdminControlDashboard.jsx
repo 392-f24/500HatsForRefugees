@@ -1,4 +1,3 @@
-// AdminControlDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import './AdminControlDashboard.css';
@@ -8,13 +7,13 @@ import EventsPage from '../components/DashboardComponents/EventsPage';
 
 const AdminControlDashboard = () => {
   const location = useLocation(); // Hook to get the current path
-  const [animationKey, setAnimationKey] = useState(0); 
+  const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
     // Increment the animation key to reset and replay the animation whenever the location changes
     setAnimationKey(prevKey => prevKey + 1);
   }, [location.pathname]); // Dependency on the current path
-  
+
   return (
     <div className="admin-dashboard-container">
       <aside className="admin-nav">
@@ -23,18 +22,24 @@ const AdminControlDashboard = () => {
           <div style={{ marginTop: '10px', marginLeft: '50px' }}>Margie</div>
         </header>
         <div className="separator-line"></div>
-        <ul key={animationKey}> 
+        <ul key={animationKey}>
           <li className={location.pathname === '/adminDashboard' ? 'active' : ''}>
-            <Link to="/adminDashboard" className="nav-link">Dashboard</Link>
+            <Link to="/adminDashboard" className="nav-link_dashboard">
+              <span className="nav-icon">📄</span> Dashboard
+            </Link>
           </li>
           <li className={location.pathname === '/adminDashboard/donations' ? 'active' : ''}>
-            <Link to="/adminDashboard/donations" className="nav-link">Donations</Link>
+            <Link to="/adminDashboard/donations" className="nav-link_dashboard">
+              <span className="nav-icon">📄</span> Donations
+            </Link>
           </li>
           <li className={location.pathname === '/adminDashboard/events' ? 'active' : ''}>
-            <Link to="/adminDashboard/events" className="nav-link">Events</Link>
+            <Link to="/adminDashboard/events" className="nav-link_dashboard">
+              <span className="nav-icon">📄</span> Events
+            </Link>
           </li>
-          <li>future goal</li>
-          <li>future goal</li>
+          <li><span className="nav-icon">📄</span> future goal</li>
+          <li><span className="nav-icon">📄</span> future goal</li>
         </ul>
       </aside>
       <div className="admin-main-content">

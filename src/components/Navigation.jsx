@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navigation.css";
-import headerIcon from '../../public/HatLogo.svg';
+import headerIcon from '/HatLogo.svg';
 
 const Navigationbar = () => {
   const [selectedLink, setSelectedLink] = useState("");
@@ -49,10 +49,10 @@ const Navigationbar = () => {
             ))}
             {/* Login and Signup Buttons */}
             <div className="login-signup-container ms-3">
-              <Button variant="dark" as={NavLink} to="/login">
+              <Button className="login-btn" variant="dark" as={NavLink} to="/login">
                 LOG IN
               </Button>
-              <Button variant="light" as={NavLink} to="/signUp">
+              <Button className="sign-up" variant="light" as={NavLink} to="/signUp">
                 SIGN UP
               </Button>
             </div>
