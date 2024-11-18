@@ -1,0 +1,10 @@
+[
+    {
+      "origin": ["http://localhost:5173",
+      "https://h-525b1.web.app/",
+      "https://h-525b1.firebase.com/"],  
+      "method": ["GET", "POST", "PUT", "DELETE"], 
+      "maxAgeSeconds": 3600
+    }
+  ]
+  

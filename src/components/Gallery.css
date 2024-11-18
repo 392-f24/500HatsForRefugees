@@ -1,0 +1,129 @@
+/* Gallery Container Styles */
+.gallery-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: relative;
+    overflow: hidden; /* Hide overflow to make images move seamlessly */
+  }
+  
+  .image-gallery {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: slideImages var(--animation-duration, 100s) infinite linear; /* Slide the images across */
+  }
+  
+  .image-row {
+    display: grid;
+    grid-template-rows: repeat(3, 150px);
+    gap: 10px;
+    width: 200px;
+  }
+  
+  .gallery-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px; /* Optional: Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow to images */
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures that the image covers the container */
+    transition: transform 1s ease-in-out;
+    animation: fadeIn 3s ease-in-out infinite;
+  }
+  
+  /* Animating the gallery for smooth horizontal transition */
+  @keyframes slideImages {
+    0% {
+      transform: translateX(0); /* Initial position */
+    }
+    100% {
+      transform: translateX(-100%); /* Move left to show next set of images */
+    }
+  }
+  
+  /* Make sure the gallery resets when reaching the end to create the loop */
+
+  
+  /* Make the gallery responsive */
+  @media (max-width: 768px) {
+    .image-gallery {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns for smaller screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .image-gallery {
+      grid-template-columns: 1fr; /* 1 column for very small screens */
+    }
+  }
+  
+  /* Modal styling */
+.image-popup-modal .modal-content {
+    background: none;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+  }
+  
+  .image-popup-modal .modal-body {
+    padding: 0;
+  }
+  
+  .enlarged-image {
+    max-height: 60vh;
+    max-width: 500px;
+  }
+  
+  /* Animation */
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .modal-content-container {
+    transition: transform 0.3s ease-in-out;
+    animation: zoomIn 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 90vh; /* Constrain the modal content to 90% of the viewport height */
+    overflow: hidden; /* Hide overflow */
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+.image-details {
+    color: black; /* Text color */
+    padding: 15px;
+    margin-top: 20px;
+    display: inline-block; /* Ensures content width adjusts to the text */
+    width: 100%; /* Optional: makes it span the full modal width */
+    text-align: left; /* Align text to the left */
+}
+
+.image-details h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.image-details p {
+    margin: 5px 0;
+}
+
+.modal-content-container img {
+    max-width: 100%;
+}
