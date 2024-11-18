@@ -2,7 +2,7 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './App.css';
+
 import Navigationbar from './components/Navigation';
 //import AdminNavigationbar from './components/AdminNavigation'; // TO BE DONE
 
@@ -18,23 +18,15 @@ import '@fontsource/archivo-black';
 const App = () => {
   const location = useLocation();
 
-  // Conditionally render the navbar for non-admin routes
-  const showNavbar = !['/adminlogin', '/admindashboard'].includes(location.pathname.toLowerCase());
+  const showNavbar = !location.pathname.toLowerCase().includes('/adminlogin') &&
+                     !location.pathname.toLowerCase().includes('/admindashboard');
+
 
   return (
     <div className="App-header">
       {showNavbar && <Navigationbar />}
       <div className="content flex-grow">
-{/* <<<<<<< HEAD
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/impact" element={<ImpactPage />} />
-          <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
-          <Route path="/adminLogin" element={<AdminLogin />} />
-          <Route path="/adminDashboard" element={<AdminControlDashboard />} />
-        </Routes>
-      </div>
-======= */}
+
         <div className='body'>
           <Routes>
             <Route path="/" element={<LandingPage />} />
