@@ -13,6 +13,10 @@ const ImpactPage = () => {
     <div className="page-container">
       <div>
         <h1 className="impact-title">Our Impact in Pictures</h1>
+        <p class="quote">
+          "It is an incredible thing to create a piece of art for someone you will likely never meet" 
+          <span class="author">- Margie Chan (founder of 500 Hats for Refugees)</span>
+        </p>
       </div>
       <div>
         <Gallery/>

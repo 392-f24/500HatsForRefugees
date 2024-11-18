@@ -59,6 +59,54 @@
     transform: scale(1.05); /* Slight zoom effect */
 }
 
+/* Quote styling */
+.quote {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: #333;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.2;
+    margin: 10px 0 10px 0; /* Reduced top and bottom margins */
 
+  }
+  
+  /* Styling for the quote marks */
+  .quote:before {
+    content: open-quote;
+    font-size: 3rem;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: #999;
+  }
+  
+  .quote:after {
+    content: close-quote;
+    font-size: 3rem;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    color: #999;
+  }
+  
+  /* Author styling */
+  .author {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    margin-top: 5px;
+  }
+  
+  /* Optional: Adding a border to emphasize the quote */
+  .quote {
+    border-left: 5px solid #999;
+    padding-left: 20px;
+  }
   
   
