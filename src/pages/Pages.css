@@ -1,5 +1,6 @@
 .pageWrapper{
     height: 100vh;
+    padding-top: 120px;
 }
 /* Alternatively, you can use the shorthand property */
 .GetInvolved-container {
@@ -7,11 +8,7 @@
     /* height: 100vh; */
     padding: 0 20px; /* Add padding on the left and right sides */
 }
-.LandingPage-container{
-    background-color: #FAF5F2;
-    height: 100vh;
 
-}
 .title {
     text-align: center;
     padding: 30px;

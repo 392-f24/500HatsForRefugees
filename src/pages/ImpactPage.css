@@ -8,6 +8,7 @@
     justify-content: flex-start; /* Start the content from the top */
     min-height: 100vh; 
     background-color: #fff; /* Optional, for better contrast */
+    padding-top: 120px;
   }
   
   .impact-title {
