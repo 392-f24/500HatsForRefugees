@@ -1,24 +1,32 @@
-import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navigation.css';
+import React, { useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Navigation.css";
 import headerIcon from '../../public/HatLogo.svg';
 
 const Navigationbar = () => {
-  const location = useLocation();
+  const [selectedLink, setSelectedLink] = useState("");
+  const location = useLocation(); // Get current location to check for active route
+  const navigate = useNavigate(); // Get navigate function from react-router-dom
 
   // Define navigation links
   const navLinks = [
+    { to: "/", key: "landing" },
     { to: "/impact", label: "Our Impact", key: "impact" },
     { to: "/volunteerOpportunities", label: "Get Involved", key: "volunteer" },
-    // { to: "/volunteerOpportunities", label: "Our Team", key: "volunteer" }
   ];
+
+  // Function to handle click on the Navbar.Brand and navigate to the landing page
+  const handleBrandClick = () => {
+    setSelectedLink(""); // Set to "landing" for active link highlight
+    navigate("/"); // Programmatically navigate to the landing page
+  };
 
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
-        <Navbar.Brand href="/" className="brand-logo">
+        <Navbar.Brand className="brand-logo" onClick={handleBrandClick}>
           <img src={headerIcon} alt="Logo" className="header-icon" />
           <div className="brand-text-container">
             <span className="brand-text">500HatsForRefugees</span>

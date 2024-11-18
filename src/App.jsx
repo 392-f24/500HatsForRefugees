@@ -25,8 +25,8 @@ const App = () => {
     <div className="App-header">
       {showNavbar && <Navigationbar />}
       <div className="content flex-grow">
+{/* <<<<<<< HEAD
         <Routes>
-          {/* Set up the routes correctly */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/impact" element={<ImpactPage />} />
           <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
@@ -34,6 +34,17 @@ const App = () => {
           <Route path="/adminDashboard" element={<AdminControlDashboard />} />
         </Routes>
       </div>
+======= */}
+        <div className='body'>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/impact" element={<ImpactPage />} />
+            <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
+            <Route path="/adminLogin" element={<AdminLogin />} />
+            <Route path="/adminDashboard" element={<AdminControlDashboard />} />
+          </Routes>
+        </div>
+     </div>
     </div>
   );
 };

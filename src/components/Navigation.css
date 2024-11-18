@@ -5,8 +5,8 @@
 }
 
 .header-icon {
-  width: 75px; /* Increased size */
-  height: 75px; /* Increased size */
+  width: 65px; /* Increased size */
+  height: 65px; /* Increased size */
   margin-right: 15px; /* Increased spacing between icon and text */
 }
 
@@ -38,13 +38,17 @@
   background-color: #4e342e; /* Dark brown */
   border-bottom: 3px solid #8e44ad; /* Purple border */
   padding: 10px 20px;
-  /* min-width: 70%; */
+  position: fixed;   /* Makes the element fixed to the viewport */
+  top: 0;            /* Position it at the top */
+  left: 0;           /* Optional: to make sure it's aligned to the left */
+  width: 100%;       /* Optional: ensures the element takes up full width */
+  z-index: 1000;     /* Ensures the element stays above other content */
 }
 
 /* Navigation links */
 .nav-item {
   font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #faf5f2;
   text-decoration: none;
   transition: color 0.3s ease; /* Smooth transition for color changes */
@@ -65,7 +69,7 @@
 .auth-btn {
   font-family: 'Playfair Display', serif;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   border-radius: 20px;
   transition: background-color 0.3s ease, color 0.3s ease;
   padding: 5px 15px;
@@ -76,6 +80,8 @@
 
 /* Login button */
 .login-btn {
+  border-radius: 20px;
+  font-size: 1.3rem;
   background-color: #000;
   color: #faf5f2;
   border: 2px solid #000;
@@ -94,6 +100,8 @@
 
 /* Sign-Up button */
 .sign-up {
+  border-radius: 20px;
+  font-size: 1.3rem;
   background-color: #faf5f2;
   color: #4e342e;
   border: 2px solid #faf5f2;
