@@ -17,7 +17,7 @@
 .modalContainer {
     width: 80%;             
     max-width: 900px;        
-    max-height: 80vh;
+    /* max-height: 80vh; */
     overflow-y: auto; 
     border-radius: 12px;
     background-color: #C57979;
@@ -34,7 +34,7 @@
 
 .title {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 30px;
     /* font-family: 'Josefin Sans'; */
     font-family: 'Archivo Black', sans-serif;
     color: white;
@@ -42,14 +42,20 @@
 }
 .titleSection {
     text-align: left;
+    display: block;
+    /* width: 80%; */
+    margin: 0 auto;
+    margin-top: 20px;
     font-family: 'Archivo Black', sans-serif;
     color: #FFDF8F;
-    margin: 0;
-    padding: 0;
 }
+
 .inputSection {
-    text-align: center;
+    text-align: left;
+    display: block;
+    width: 100%;
     margin-top: 10px;
+    margin-bottom: 3px;
     /* font-family: 'Josefin Sans'; */
     font-family: 'Archivo Black', sans-serif;
     color: white;
@@ -159,6 +165,16 @@
     width: 100%;            
     padding: 5px;
 }
+
+.subInput {
+    width: 50%;         /* Make the input take 50% of the container width */
+    display: block;     /* Ensure it's treated as a block element */
+    margin: 10px 0 10px 0; /* Add some spacing around the input, aligns left by default */
+    padding: 5px;       /* Add padding for better appearance */
+    box-sizing: border-box; /* Include padding in the element's width */
+}
+
+
 
 .twoColumns {
     display: grid;

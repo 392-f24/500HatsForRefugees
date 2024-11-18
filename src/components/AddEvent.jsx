@@ -106,7 +106,7 @@ const AddEvent = ({ closeModal }) => {
                 <div className="body">
                     {/* Event Type Dropdown */}
                     
-                    <p className="">Event type</p>
+                    <p className="inputSection">Event type</p>
                     <select
                         className="input fullWidth"
                         value={eventType}
@@ -117,18 +117,24 @@ const AddEvent = ({ closeModal }) => {
                         <option value="Hat Knitting">Hat Knitting</option>
                     </select>
 
+                    <p className="inputSection">Location</p>
+
                     <input
                         className="input fullWidth"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="Enter location"
                     />
+
+                    <p className="inputSection">Date</p>
                     <input
                         className="input fullWidth"
                         type="date"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                     />
+
+                    <p className="inputSection">Start Time</p>
                     <input
                         className="input fullWidth"
                         type="time"
@@ -136,6 +142,8 @@ const AddEvent = ({ closeModal }) => {
                         onChange={(e) => setStartTime(e.target.value)}
                         placeholder="Start Time"
                     />
+
+                    <p className="inputSection">End Time</p>
                     <input
                         className="input fullWidth"
                         type="time"
@@ -145,8 +153,12 @@ const AddEvent = ({ closeModal }) => {
                     />
 
                     {/* Conditionally render additional fields for Hats and Hot Chocolate */}
+
+                    
                     {eventType === 'Hats and Hot Chocolate' && (
                         <>
+                        <h4 className="titleSection">Hats & Hot Chocolate</h4>
+                            <p className="inputSection">Around How many hats are needed?</p>
                             <input
                                 className="input fullWidth"
                                 type="number"
@@ -154,8 +166,10 @@ const AddEvent = ({ closeModal }) => {
                                 onChange={(e) => setHatsNeeded(e.target.value)}
                                 placeholder="Hats Needed"
                             />
+
+                            <p className="inputSection">Demographics of serving population</p>
                             <input
-                                className="input fullWidth"
+                                className="input fullWidth "
                                 type="number"
                                 value={hispanicLatino}
                                 onChange={(e) => setHispanicLatino(e.target.value)}
