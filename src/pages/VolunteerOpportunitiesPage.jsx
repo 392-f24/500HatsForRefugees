@@ -100,12 +100,6 @@ const VolunteerOpportunitiesPage = () => {
           <AddEvent closeModal={() => setAddEvent(false)} />
         )}
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <button className="addEvent-button" onClick={() => setAddEvent(true)}>
-            Request an Event
-          </button>
-        </div>
-
         <h4 className="sectionTitle">Upcoming Events</h4>
 
         {/* Filter Controls */}
@@ -159,6 +153,11 @@ const VolunteerOpportunitiesPage = () => {
             </div>
           </div>
         )}
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <button className="addEvent-button" onClick={() => setAddEvent(true)}>
+            Request an Event
+          </button>
+        </div>
       </div>
     </div>
   );
