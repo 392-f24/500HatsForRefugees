@@ -1,109 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 .admin-dashboard-container {
-    display: flex;
-    height: 100vh;
-    background-color: #f9fafc;
-  }
-   /*** header ***/
-  .admin-nav {
-    width: 220px;
-    background-color: #ffffff; /* White background */
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
-  .admin-header {
-    font-size: 36px; /* Adjusted font size */
-    font-family: 'Dancing Script', cursive; /* Artistic font */
-    font-style: italic; /* Italic text */
-    font-weight: bold; /* Make the text bold */
-    background: linear-gradient(135deg, #e91e63, #9c27b0); /* Pink to purple gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Makes the gradient show in text */
-    margin-bottom: 40px; /* Space below the header */
-    white-space: pre-line; /* Allows new lines */
-  }
+  display: flex;
+  height: 100vh;
+  background-color: #f9fafc;
+}
 
-  .separator-line {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Faded line */
-    margin-bottom: 35px; /* Space below the line */
-  }
+/*** header ***/
+.admin-nav {
+  width: 220px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
-  /*** nav button ***/
-  .admin-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  @keyframes slideIn {
-    0% {
-      transform: translateX(-100%); /* Start off-screen */
-      opacity: 0; /* Invisible */
-    }
-    100% {
-      transform: translateX(0); /* Move to original position */
-      opacity: 1; /* Fully visible */
-    }
-  }
-  
-  .admin-nav li {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #555;
-    opacity: 0; /* Start invisible */
-    animation: slideIn 0.5s forwards; /* Animation applied */
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  /* Add delays to create staggered effect */
-  .admin-nav li:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .admin-nav li:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .admin-nav li:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .admin-nav li:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .admin-nav li:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  
-  .admin-nav li:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .admin-nav li::before {
-    content: '📄'; /* Example template icon */
-    margin-right: 10px;
-  }
+.admin-header {
+  font-size: 36px;
+  font-family: 'Dancing Script', cursive;
+  font-style: italic;
+  font-weight: bold;
+  background: linear-gradient(135deg, #e91e63, #9c27b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+  white-space: pre-line;
+}
 
-  
-  .admin-nav li.active {
-    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-    color: #ffffff; /* White text for active state */
-    
+.separator-line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 35px;
+}
+
+/*** nav button ***/
+.admin-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@keyframes slideIn {
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
   }
-    
-  .nav-link {
-    display: block; /* Makes the link fill the entire li */
-    text-decoration: none; /* Removes underline */
-    color: inherit; /* Inherits the text color from li */
-    width: 100%; /* Ensures full width coverage */
-    height: 100%; /* Ensures full height coverage */
+  100% {
+      transform: translateX(0);
+      opacity: 1;
   }
-  
-  
-  .admin-main-content {
-    flex-grow: 1;
-    padding: 20px;
-  }
+}
+
+.admin-nav li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
+  transition: background-color 0.3s, color 0.3s;
+}
+.admin-nav li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.admin-nav li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.admin-nav li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.admin-nav li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.admin-nav li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.admin-nav li:hover {
+  background-color: #f0f0f0;
+}
+
+.admin-nav li.active {
+  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  color: #ffffff;
+}
+
+.nav-link_dashboard {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%; /* Ensures the full width coverage */
+  height: 60px; /* Adjust height */
+  padding-left: 10px; /* Add padding for spacing */
+}
+
+.nav-icon {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.admin-main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
