@@ -1,0 +1,84 @@
+  .filters {
+    margin-bottom: 20px;
+  }
+  
+  .filters label {
+    margin-bottom: 10px;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .eventsList {
+    flex: 1;
+    margin-right: 20px;
+    height: 450px;
+    overflow-y: auto; 
+  }
+  
+  .mapContainer {
+    flex: 2;
+    height: 450px; 
+  }
+  
+.filterControls {
+    background-color: #FAF5F2;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex; 
+    gap: 20px;
+  }
+  
+.filterControls label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0; 
+}
+
+.filterControls select,
+.filterControls input {
+    width: auto; 
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+  
+.event-card {
+    margin-bottom: 20px;
+    background-color: #C57979;
+    color: white; 
+  }
+  
+.event-card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+}
+
+.event-title {
+    color: black; 
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.more-info-button {
+    background-color: #EEBF46; 
+    color: black; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; 
+    cursor: pointer; 
+    text-align: center;
+    display: inline-block; 
+    font-size: 20px; 
+    /* margin-top: 10px; */
+    font-weight: bold;
+  }
+  

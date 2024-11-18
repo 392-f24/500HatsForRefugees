@@ -13,6 +13,8 @@
   "dependencies": {
     "@fontsource/archivo": "^5.1.0",
     "@fontsource/archivo-black": "^5.1.0",
+    "@react-google-maps/api": "^2.20.3",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.6",

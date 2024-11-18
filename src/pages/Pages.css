@@ -2,31 +2,30 @@
     height: 100vh;
     padding-top: 120px;
 }
-.GetInvolved-container{
+/* Alternatively, you can use the shorthand property */
+.GetInvolved-container {
     background-color: #FAF5F2;
-    height: 100vh;
-
+    /* height: 100vh; */
+    padding: 0 20px; /* Add padding on the left and right sides */
 }
 
 .title {
     text-align: center;
     padding: 30px;
     font-family: 'Archivo Black', sans-serif;
-    color: #EEBF46 !important; /* Add !important to force the color */
+    color: #EEBF46 !important; 
 }
 .subtitle {
     text-align: center;
-    /* padding: 30px; */
     font-family: 'Archivo Black', sans-serif;
-    color: #EEBF46 !important; /* Add !important to force the color */
+    color: #EEBF46 !important; 
     margin-top:-10px;
 }
 
 .sectionTitle {
     text-align: center;
-    /* padding: 30px; */
     font-family: 'Archivo', sans-serif;
-    color: #EEBF46 !important; /* Add !important to force the color */
+    color: #EEBF46 !important; 
     margin-top:50px;
 }
 
