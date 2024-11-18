@@ -23,7 +23,8 @@ const DonationForm = ({ closeModal }) => {
   };
 
   const handleSubmit = async () => {
-    if (!donationItem || (!monetaryAmt && donationItem === 'Money') || (!hatQuantity && donationItem !== 'Money')) {
+    if (!donationItem || (!monetaryAmt && donationItem === 'Money') || (!hatQuantity && donationItem !== 'Money')
+        || (!selectedEventID && donationMode === 'Dropoff at Donation Event')) { 
       alert('Please fill in all required fields.');
       return;
     }
@@ -63,6 +64,19 @@ const DonationForm = ({ closeModal }) => {
         {event.Type} at {event.Location} ({event.Date})
       </option>
     ));
+  };
+
+  // Big ups to @NoodleSoup0
+  // Function to Auto-fill demo data
+  const fillDemoData = () => {
+    setDonationItem('Unused Hats');
+    setHatQuantity('50');
+    setDonationMode('delivery by mail');
+    setMonetaryAmt('100');
+    setStreet('123 Main St');
+    setCity('San Francisco');
+    setState('CA');
+    setZip('94105');
   };
 
   return (
@@ -168,6 +182,9 @@ const DonationForm = ({ closeModal }) => {
           </button>
           <button id="saveBtn" onClick={handleSubmit}>
             Donate
+          </button>
+          <button id="demoBtn" onClick={fillDemoData}>
+            Autofill Demo Data
           </button>
         </div>
       </div>
