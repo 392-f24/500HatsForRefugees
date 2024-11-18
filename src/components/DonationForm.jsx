@@ -79,6 +79,19 @@ const DonationForm = ({ closeModal }) => {
     setZip('94105');
   };
 
+  const isSubmitDisabled = () => {
+    return (
+      !donationItem ||
+      (!monetaryAmt && donationItem === 'Money') ||
+      (!hatQuantity && donationItem !== 'Money') ||
+      (!selectedEventID && donationMode === 'Dropoff at Donation Event') ||
+      !street ||
+      !city ||
+      !state ||
+      !zip
+    );
+  };
+
   return (
     <div className="modalBackground" onClick={handleOverlayClick}>
       <div className="modalContainer">
@@ -180,7 +193,7 @@ const DonationForm = ({ closeModal }) => {
           <button id="cancelBtn" onClick={() => closeModal(false)}>
             Cancel
           </button>
-          <button id="saveBtn" onClick={handleSubmit}>
+          <button id="saveBtn" onClick={handleSubmit} disabled={isSubmitDisabled()}>
             Donate
           </button>
           <button id="demoBtn" onClick={fillDemoData}>
