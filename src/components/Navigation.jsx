@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navigation.css";
-import headerIcon from '../../public/HatLogo.svg';
+import headerIcon from '/HatLogo.svg';
 
 const Navigationbar = () => {
   const [selectedLink, setSelectedLink] = useState("");
