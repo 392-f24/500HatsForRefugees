@@ -1,14 +1,12 @@
-// VolunteerOpportunitiesPage.jsx
-
 import { useState, useEffect } from 'react';
 import { useDbData, useDbRemove, useDbUpdate } from '../utilities/firebase.js';
 import './Pages.css'
 import AddEvent from '../components/AddEvent';
+import DonationForm from '../components/DonationForm';
 
 const VolunteerOpportunitiesPage = () => {
-  // const [carts, cartsError] = useDbData('/Cart');
   const [showAddEvent, setAddEvent] = useState(false);
-  // const [updateData] = useDbUpdate(`/Cart/${cartId}`);
+  const [showDonationForm, setShowDonationForm] = useState(false);
 
   return (
     <div className="pageWrapper">
@@ -22,10 +20,13 @@ const VolunteerOpportunitiesPage = () => {
         <h4 className="sectionTitle"> About Our Events</h4>
 
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex-column", justifyContent: "center", alignItems: "center" }}>
           <button className="addEvent-button" onClick={() => setAddEvent(true)}>
             Request an Event
           </button> 
+          <button className="addEvent-button" onClick={() => setShowDonationForm(true)}>
+            Donate Today!
+          </button>
         </div>
       </div>
 
@@ -35,6 +36,7 @@ const VolunteerOpportunitiesPage = () => {
           closeModal={() => setAddEvent(false)}
         />
       )}
+      {showDonationForm && <DonationForm closeModal={() => setShowDonationForm(false)} />}
     </div>
   );
 };
