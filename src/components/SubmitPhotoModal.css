@@ -30,30 +30,6 @@
     box-shadow: 0 0 5px rgba(88, 61, 61, 0.5);
 }
 
-.cancel-button {
-    background-color: #000000;
-    border-radius: 20px;
-    color: #A49A93;
-    font-weight: bold;
-    border: none;
-    padding: 10px 20px;
-}
-.cancel-button:hover {
-    background-color: #8e44ad;
-}
-.submit-button {
-    background-color: #A49A93;
-    border-radius: 20px;
-    color: #583D3D;
-    font-weight: bold;
-    border: none;
-    padding: 10px 20px;
-}
-
-.submit-button:hover {
-    background-color: #8e44ad;
-}
-
 /* Error Feedback */
 .form-control.is-invalid {
     border-color: #FF6B6B;

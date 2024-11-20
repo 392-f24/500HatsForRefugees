@@ -138,30 +138,10 @@
                 
 }
 
-.modalContainer .footer button {
-    margin: 10px;
-    padding: 10px;
-    border:hsl(from color h s l);
-
-    background-color: cornflowerblue;
-    color: black;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-#cancelBtn {
-    background-color: #ABABAB;
-    
-}
-#cancelBtn:hover {
-    background-color: #838383;
-}
-#saveBtn {
-    background-color: #FAC16B;
-}
-#saveBtn:hover {
-    background-color: #d28c4c;
+.modalFooter{
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .input {
@@ -196,42 +176,3 @@
 .smallText {
     font-size: 14px;
 }
-
-/* .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; 
-  }
-  .modal-content {
-    background-color: #F5EDE0;
-    padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    height: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Arrange content vertically 
-    justify-content: space-between; /* Space content evenly 
-  }
-  
-  /* Close button in the top-right corner 
-  .close-button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
-   */

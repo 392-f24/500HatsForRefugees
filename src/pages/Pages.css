@@ -1,6 +1,6 @@
 .pageWrapper{
     height: 100vh;
-    padding-top: 120px;
+    padding-top: 90px;
 }
 /* Alternatively, you can use the shorthand property */
 .GetInvolved-container {
@@ -29,17 +29,11 @@
     margin-top:50px;
 }
 
-.addEvent-button {
-    background-color: #EEBF46;
-    color: #000000;
-    padding: 10px 15px;
-    border-radius: 16px;
-    font-size: 22px;
-    font-family: 'Archivo', sans-serif;
-    cursor: pointer;
-    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.3s;
-    display: block; /* Makes it a block element */
-    margin: 20px auto; /* Centers the button */
-    text-align: center;
+.btn-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 5px;
 }

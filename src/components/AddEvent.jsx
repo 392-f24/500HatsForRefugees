@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import './AddEvent.css';
 import { useDbUpdate, useAuthState } from '../utilities/firebase';
-
+import { Button } from 'react-bootstrap';
 const AddEvent = ({ closeModal }) => {
     if (!closeModal) return null;
 
@@ -270,12 +270,12 @@ const AddEvent = ({ closeModal }) => {
                 </div>
 
                 <div className="modalFooter">
-                    <button className="saveButton" onClick={handleSave} disabled={isSaveDisabled()}>
+                    <Button variant="secondary" className="yellow-btn" onClick={handleSave} disabled={isSaveDisabled()}>
                         Save
-                    </button>
-                    <button className="cancelButton" onClick={() => closeModal(false)}>
+                    </Button>
+                    <Button variant="secondary" className="yellow-btn" onClick={() => closeModal(false)}>
                         Cancel
-                    </button>
+                    </Button>
                     <button className="demoButton" onClick={autofillDemoData}>
                         Autofill Demo Data
                     </button>

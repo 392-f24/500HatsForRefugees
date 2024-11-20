@@ -153,7 +153,7 @@ const VolunteerOpportunitiesPage = () => {
                       <strong>Address:</strong> {event.Address}<br />
                       {/* <strong>Status:</strong> {event.EventStatus} */}
                     </Card.Text>
-                    <Button className="more-info-button">More Info</Button>
+                    <Button className="yellow-btn">More Info</Button>
                   </Card.Body>
                 </Card>
               ))}
@@ -163,11 +163,11 @@ const VolunteerOpportunitiesPage = () => {
             </div>
           </div>
         )}
-        <div style={{ paddingTop: "2.0rem", paddingBottom: "2.0rem", display: "flex-column", justifyContent: "center", alignItems: "center" }}>
-          <button className="addEvent-button" onClick={() => setAddEvent(true)}>
+        <div className='btn-section'>
+          <button className="yellow-btn" onClick={() => setAddEvent(true)}>
             Request an Event
           </button>
-          <button className="addEvent-button" onClick={() => setShowDonationForm(true)}>
+          <button className="yellow-btn" onClick={() => setShowDonationForm(true)}>
             Donate Today!
           </button>
         </div>

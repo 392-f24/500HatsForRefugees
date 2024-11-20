@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import "./ImpactPage.css"; // Make sure to import your stylesheet
 import Gallery from "../components/Gallery";
 import { Button } from "react-bootstrap";
 import SubmitPhotoModal from '../components/SubmitPhotoModal';
 
+import "./ImpactPage.css"; // Make sure to import your stylesheet
 
 const ImpactPage = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -23,8 +23,8 @@ const ImpactPage = () => {
       </div>
       <div className="feature-photo-section">
         <h5 className="feature-photo-heading">Have an image you would like to have featured here?</h5>
-        <Button className="feature-photo-button" 
-        onClick={() => setModalShow(true)}>
+        <Button className="yellow-btn" 
+          onClick={() => setModalShow(true)}>
           Send Your Photo Here
         </Button>
     </div>

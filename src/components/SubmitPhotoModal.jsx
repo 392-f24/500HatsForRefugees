@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Spinner } from 'react-bootstrap';
-import './SubmitPhotoModal.css'
 import { uploadImage, submitDataToDatabase } from '../utilities/firebase'; // Import Firebase functions
+
+import './SubmitPhotoModal.css'
 
 const SubmitPhotoModal = ({ show, handleClose }) => {
     const [image, setImage] = useState(null);
@@ -168,10 +169,10 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer className="modal-footer">
-                <Button variant="secondary" onClick={handleClose} className="cancel-button">
+                <Button variant="secondary" onClick={handleClose} className="black-btn">
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={handleSubmit} className="submit-button">
+                <Button variant="secondary" onClick={handleSubmit} className="white-btn">
                     Submit
                 </Button>
             </Modal.Footer>

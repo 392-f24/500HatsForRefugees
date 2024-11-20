@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './AddEvent.css';
 import { useDbUpdate, useDbData, useAuthState } from '../utilities/firebase';
+import { Button } from 'react-bootstrap';
 
 const DonationForm = ({ closeModal }) => {
   const [user] = useAuthState();
@@ -190,12 +191,12 @@ const DonationForm = ({ closeModal }) => {
           />
         </div>
         <div className="modalFooter">
-          <button id="saveButton" onClick={handleSubmit} disabled={isSubmitDisabled()}>
+          <Button variant="secondary" className="yellow-btn" id="saveButton" onClick={handleSubmit} disabled={isSubmitDisabled()}>
             Donate
-          </button>
-          <button id="cancelButton" onClick={() => closeModal(false)}>
+          </Button>
+          <Button variant="secondary" className="yellow-btn" id="cancelButton" onClick={() => closeModal(false)}>
             Cancel
-          </button>
+          </Button>
           <button id="demoButton" onClick={fillDemoData}>
             Autofill Demo Data
           </button>
