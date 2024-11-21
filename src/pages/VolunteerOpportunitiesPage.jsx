@@ -105,12 +105,10 @@ const VolunteerOpportunitiesPage = () => {
         <h5 className="subtitle">Find out how you can get involved and help make a difference.</h5>
 
         {showAddEvent && (
-          <AddEvent closeModal={() => setAddEvent(false)} />
+          <AddEvent show={showAddEvent} closeModal={() => setAddEvent(false)} />
         )}
 
-        {showDonationForm && <DonationForm closeModal={() => setShowDonationForm(false)} />}
-
-        <h4 className="sectionTitle">Upcoming Events</h4>
+        {showDonationForm && <DonationForm show={showDonationForm} closeModal={() => setShowDonationForm(false)} />}        <h4 className="sectionTitle">Upcoming Events</h4>
 
         {/* Filter Controls */}
         <div className="filterControls">

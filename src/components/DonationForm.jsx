@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './AddEvent.css';
+import { Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import { useDbUpdate, useDbData, useAuthState } from '../utilities/firebase';
-import { Button } from 'react-bootstrap';
 
-const DonationForm = ({ closeModal }) => {
+const DonationForm = ({ show, closeModal }) => {
   const [user] = useAuthState();
   const [donationItem, setDonationItem] = useState('Knitted Hats');
   const [donationMode, setDonationMode] = useState('Dropoff at Donation Event');
@@ -17,21 +16,10 @@ const DonationForm = ({ closeModal }) => {
   const [updateData] = useDbUpdate('/donations');
   const [events, eventsError] = useDbData('/events');
 
-  const handleOverlayClick = (e) => {
-    if (e.target.className === 'modalBackground') {
-      closeModal(false);
-    }
-  };
-
   const handleSubmit = async () => {
     if (!donationItem || (!monetaryAmt && donationItem === 'Money') || (!hatQuantity && donationItem !== 'Money')
-        || (!selectedEventID && donationMode === 'Dropoff at Donation Event')) { 
+        || (!selectedEventID && donationMode === 'Dropoff at Donation Event')) {
       alert('Please fill in all required fields.');
-      return;
-    }
-
-    if (!street || !city || !state || !zip) {
-      alert('Please complete the location details.');
       return;
     }
 
@@ -49,8 +37,8 @@ const DonationForm = ({ closeModal }) => {
 
     try {
       await updateData({ [newDonationID]: newDonation });
-      console.log('Donation submitted successfully!');
-      closeModal(false);
+      alert('Donation submitted successfully!');
+      closeModal();
     } catch (error) {
       console.error('Error submitting donation:', error);
     }
@@ -67,142 +55,119 @@ const DonationForm = ({ closeModal }) => {
     ));
   };
 
-  // Big ups to @NoodleSoup0
-  // Function to Auto-fill demo data
-  const fillDemoData = () => {
-    setDonationItem('Unused Hats');
-    setHatQuantity('50');
-    setDonationMode('delivery by mail');
-    setMonetaryAmt('100');
-    setStreet('123 Main St');
-    setCity('San Francisco');
-    setState('CA');
-    setZip('94105');
-  };
-
-  const isSubmitDisabled = () => {
-    return (
-      !donationItem ||
-      (!monetaryAmt && donationItem === 'Money') ||
-      (!hatQuantity && donationItem !== 'Money') ||
-      (!selectedEventID && donationMode === 'Dropoff at Donation Event') ||
-      !street ||
-      !city ||
-      !state ||
-      !zip
-    );
-  };
-
   return (
-    <div className="modalBackground" onClick={handleOverlayClick}>
-      <div className="modalContainer">
-        <div className="title">
-          <h2>Make a Donation</h2>
-        </div>
-        <div className="modalBody">
-          <p className="inputSection">Donation Item</p>
-          <select
-            className="input fullWidth"
-            value={donationItem}
-            onChange={(e) => setDonationItem(e.target.value)}
-          >
-            <option value="Knitted Hats">Knitted Hats</option>
-            <option value="Unused Hats">Unused Hats</option>
-            <option value="Second-Hand Hats">Second-Hand Hats</option>
-            <option value="Money">Money</option>
-          </select>
+    <Modal
+      show={show}
+      onHide={closeModal}
+      centered
+      dialogClassName="custom-modal"
+      contentClassName="custom-modal-content"
+    >
+      <Modal.Header className="custom-modal-header" closeButton>
+        <Modal.Title className="title">Make a Donation</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="modalBody">
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label className="inputSection">Donation Item</Form.Label>
+            <Form.Select 
+              className="input fullWidth"
+              value={donationItem} 
+              onChange={(e) => setDonationItem(e.target.value)}
+            >
+              <option value="Knitted Hats">Knitted Hats</option>
+              <option value="Unused Hats">Unused Hats</option>
+              <option value="Second-Hand Hats">Second-Hand Hats</option>
+              <option value="Money">Money</option>
+            </Form.Select>
+          </Form.Group>
 
           {donationItem === 'Money' ? (
-            <>
-              <p className="inputSection">Monetary Amount</p>
-              <input
+            <Form.Group className="mb-3">
+              <Form.Label className="inputSection">Monetary Amount</Form.Label>
+              <Form.Control
                 className="input fullWidth"
                 type="number"
                 value={monetaryAmt}
                 onChange={(e) => setMonetaryAmt(e.target.value)}
                 placeholder="Amount in USD"
               />
-            </>
+            </Form.Group>
           ) : (
-            <>
-              <p className="inputSection">Hat Quantity</p>
-              <input
+            <Form.Group className="mb-3">
+              <Form.Label className="inputSection">Hat Quantity</Form.Label>
+              <Form.Control
                 className="input fullWidth"
                 type="number"
                 value={hatQuantity}
                 onChange={(e) => setHatQuantity(e.target.value)}
                 placeholder="Number of hats"
               />
-            </>
+            </Form.Group>
           )}
 
-          <p className="inputSection">Donation Mode</p>
-          <select
-            className="input fullWidth"
-            value={donationMode}
-            onChange={(e) => setDonationMode(e.target.value)}
-          >
-            <option value="Dropoff at Donation Event">Dropoff at Donation Event</option>
-            <option value="delivery by mail">Delivery by Mail</option>
-          </select>
+          <Form.Group className="mb-3">
+            <Form.Label className="inputSection">Donation Mode</Form.Label>
+            <Form.Select className="input fullWidth" value={donationMode} onChange={(e) => setDonationMode(e.target.value)}>
+              <option value="Dropoff at Donation Event">Dropoff at Donation Event</option>
+              <option value="delivery by mail">Delivery by Mail</option>
+            </Form.Select>
+          </Form.Group>
 
           {donationMode === 'Dropoff at Donation Event' && (
-            <>
-              <p className="inputSection">Select Event</p>
-              <select
-                className="input fullWidth"
-                value={selectedEventID}
-                onChange={(e) => setSelectedEventID(e.target.value)}
-              >
+            <Form.Group className="mb-3">
+              <Form.Label className="inputSection">Select Event</Form.Label>
+              <Form.Select className="input fullWidth" value={selectedEventID} onChange={(e) => setSelectedEventID(e.target.value)}>
                 <option value="">Select an event</option>
                 {renderEventOptions()}
-              </select>
-            </>
+              </Form.Select>
+            </Form.Group>
           )}
 
-          <p className="inputSection">Donor Location</p>
-          <input
-            className="input fullWidth"
-            type="text"
-            value={street}
-            onChange={(e) => setStreet(e.target.value)}
-            placeholder="Street"
-          />
-          <input
-            className="input fullWidth"
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="City"
-          />
-          <input
-            className="input fullWidth"
-            type="text"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            placeholder="State"
-          />
-          <input
-            className="input fullWidth"
-            type="text"
-            value={zip}
-            onChange={(e) => setZip(e.target.value)}
-            placeholder="ZIP Code"
-          />
-        </div>
-        <div className="modalFooter">
-          <Button variant="secondary" className="yellow-btn" id="saveButton" onClick={handleSubmit} disabled={isSubmitDisabled()}>
-            Donate
-          </Button>
-          <Button variant="secondary" className="yellow-btn" id="cancelButton" onClick={() => closeModal(false)}>
-            Cancel
-          </Button>
-          <button id="demoButton" onClick={fillDemoData}>
-            Autofill Demo Data
-          </button>
-        </div>
-      </div>
-    </div>
+          <Form.Group className="mb-3">
+            <Form.Label className="inputSection">Donor Location</Form.Label>
+            <Form.Control
+              className="input fullWidth"
+              type="text"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              placeholder="Street"
+            />
+            <InputGroup className="mt-2">
+              <Form.Control
+                className="input fullWidth"
+                type="text"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="City"
+              />
+              <Form.Control
+                className="input fullWidth"
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                placeholder="State"
+              />
+              <Form.Control
+                className="input fullWidth"
+                type="text"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+                placeholder="ZIP Code"
+              />
+            </InputGroup>
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer className="modalFooter">
+        <Button variant="secondary" className="yellow-btn" onClick={closeModal}>
+          Cancel
+        </Button>
+        <Button variant="primary" className="yellow-btn" onClick={handleSubmit}>
+          Donate
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 
