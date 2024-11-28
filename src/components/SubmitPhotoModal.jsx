@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Spinner } from 'react-bootstrap';
-import './SubmitPhotoModal.css'
 import { uploadImage, submitDataToDatabase } from '../utilities/firebase'; // Import Firebase functions
 
 const SubmitPhotoModal = ({ show, handleClose }) => {
@@ -104,19 +103,21 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
     };
 
     return (
-        <Modal show={show} onHide={handleClose} centered className="submit-photo-modal">
-            <Modal.Header closeButton className="modal-header">
-                <Modal.Title>Submit Your Photo</Modal.Title>
+        <Modal show={show} onHide={handleClose} 
+        centered dialogClassName="custom-modal"
+        contentClassName="custom-modal-content">
+            <Modal.Header closeButton className="custom-modal-header">
+                <Modal.Title className="title">Submit Your Photo</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="modalBody">
                 <Form>
                     {/* Image Upload */}
                     <Form.Group controlId="formFile">
-                        <Form.Label>Upload Image</Form.Label>
+                        <Form.Label className="inputSection">Upload Image</Form.Label>
                         <Form.Control type="file" onChange={handleImageUpload} 
                         accept="image/*" 
                         isInvalid={errors.image}
-                        className="custom-input"/>
+                        className="input fullWidth"/>
                         <Form.Control.Feedback type="invalid">
                             Please upload an image.
                         </Form.Control.Feedback>
@@ -124,14 +125,14 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
 
                     {/* Name Field */}
                     <Form.Group controlId="formName" className="mt-3">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label className="inputSection">Name</Form.Label>
                         <Form.Control
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Enter your name"
                             isInvalid={errors.name}
-                            className="custom-input"
+                            className="input fullWidth"
                         />
                         <Form.Control.Feedback type="invalid">
                             Please enter your name.
@@ -140,14 +141,14 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
 
                     {/* ZIP Field */}
                     <Form.Group controlId="formZip" className="mt-3">
-                        <Form.Label>ZIP Code (Optional)</Form.Label>
+                        <Form.Label className="inputSection">ZIP Code (Optional)</Form.Label>
                         <Form.Control
                             type="text"
                             value={zip}
                             onChange={handleZipChange}
                             placeholder="Enter ZIP Code"
                             maxLength="5"
-                            className="custom-input"
+                            className="input fullWidth"
                         />
                         {isLoading && <Spinner animation="border" size="sm" className="mt-2" />}
                         {town && <Form.Text className="text-muted mt-2">Town: {town}, State: {state}</Form.Text>}
@@ -155,23 +156,23 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
 
                     {/* Message Field */}
                     <Form.Group controlId="formMessage" className="mt-3">
-                        <Form.Label>Message</Form.Label>
+                        <Form.Label className="inputSection">Message</Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             placeholder="Enter your message"
-                            className="custom-input"
+                            className="input fullWidth"
                         />
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer className="modal-footer">
-                <Button variant="secondary" onClick={handleClose} className="cancel-button">
+            <Modal.Footer className="modalFooter">
+                <Button variant="secondary" onClick={handleClose} className="yellow-btn">
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={handleSubmit} className="submit-button">
+                <Button variant="secondary" onClick={handleSubmit} className="yellow-btn">
                     Submit
                 </Button>
             </Modal.Footer>

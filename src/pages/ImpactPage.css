@@ -7,8 +7,8 @@
     align-items: center;     /* Center content horizontally */
     justify-content: flex-start; /* Start the content from the top */
     min-height: 100vh; 
-    background-color: #fff; /* Optional, for better contrast */
-    padding-top: 120px;
+    background-color: #FAF5F2;
+    padding-top: 100px;
   }
   
   .impact-title {
@@ -38,26 +38,6 @@
     font-weight: 700;
     line-height: normal;
     margin-bottom: 20px; /* Space between heading and button */
-}
-
-.feature-photo-button {
-    border-radius: 20px;
-    background-color: #EEBF46; /* Button background */
-    color: #583D3D; /* Text color */
-    font-family: 'Inter', sans-serif;
-    font-size: 24px; /* Smaller font size */
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    border: none; /* Remove default border */
-    padding: 8px 16px; /* Reduced padding for a smaller button */
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-}
-
-/* Button Hover Effect */
-.feature-photo-button:hover {
-    background-color: #d9a63f; /* Slightly darker shade for hover */
-    transform: scale(1.05); /* Slight zoom effect */
 }
 
 /* Quote styling */

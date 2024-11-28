@@ -65,15 +65,6 @@
     display: block;
 }
 
-.volunteer-button {
-    background-color:#EEBF46;
-    color: #583D3D;
-    border-radius: 10px;
-    font-family: 'Archivo', sans-serif;
-    padding:5px;
-    margin-top:10px;
-}
-
 .UpcomingEvents {
     font-family: 'Archivo Black', sans-serif;
     color: #C57979;

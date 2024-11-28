@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Navigation.css";
 import headerIcon from '/HatLogo.svg';
+
+import "./Navigation.css";
 
 const Navigationbar = () => {
   const [selectedLink, setSelectedLink] = useState("");
@@ -49,10 +50,10 @@ const Navigationbar = () => {
             ))}
             {/* Login and Signup Buttons */}
             <div className="login-signup-container ms-3">
-              <Button className="login-btn" variant="dark" as={NavLink} to="/login">
+              <Button className="black-btn" variant="dark" as={NavLink} to="/login">
                 LOG IN
               </Button>
-              <Button className="sign-up" variant="light" as={NavLink} to="/signUp">
+              <Button className="white-btn" variant="light" as={NavLink} to="/signUp">
                 SIGN UP
               </Button>
             </div>

@@ -2,6 +2,7 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './components/Buttons.css'
 
 import Navigationbar from './components/Navigation';
 //import AdminNavigationbar from './components/AdminNavigation'; // TO BE DONE

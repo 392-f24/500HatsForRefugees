@@ -1,0 +1,83 @@
+.custom-modal {
+    width: 80%;
+    max-width: 800px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    max-height: 100%; /* Prevent the modal from extending beyond viewport height */
+    height: 90%; /* Ensure the modal uses the full available height */
+  }
+  
+  
+  .custom-modal-content {
+    border-radius: 12px;
+    background-color: #C57979;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-height: 90vh; /* Prevent content from exceeding the viewport */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  }
+
+
+  .custom-modal-header {
+    text-align: center; /* Center content inside the header */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Ensure title remains centered if there's other content */
+    border-bottom: none; /* Optional: Remove header bottom border */
+    background-color: transparent; /* Ensure header background matches modal */
+  
+  }
+
+  .title {
+    text-align: center;
+    color: #FAF5F2 !important;
+    font-family: "Archivo Black";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .sub-title {
+    color: #FFDF8F;
+    font-family: "Archivo Black";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .modalBody {
+    padding: 20px;
+  }
+  
+  .inputSection {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'Archivo Black', sans-serif;
+    color: #FAF5F2;
+  }
+  
+  .input {
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: #FAF5F2;
+    font-family: 'Archivo Black', sans-serif;
+  }
+  
+  .input:focus {
+    border: 2px solid;
+    border-color: #583D3D;
+    box-shadow: 0 0 5px rgba(88, 61, 61, 0.5);
+}
+
+  .modalFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    border-top: none;
+  }

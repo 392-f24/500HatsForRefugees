@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useDbData, useDbRemove, useDbUpdate } from '../utilities/firebase.js';
 import { useNavigate } from 'react-router-dom';
+
 import './LandingPage.css';
 
 const LandingPage = () => {
@@ -22,7 +23,7 @@ const LandingPage = () => {
           <h6 className="landingDescription">
             500 Hats for Refugees is a nonprofit dedicated to helping refugees through their first, cold Chicago winter.
           </h6>
-          <button className="volunteer-button" onClick={handleGetInvolvedClick}>
+          <button className="yellow-btn" onClick={handleGetInvolvedClick}>
             Get Involved Now!
           </button>
         </div>
