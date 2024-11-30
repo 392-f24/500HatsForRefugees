@@ -87,6 +87,7 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
                     message,
                     imageUrl,
                     timestamp: Date.now(),
+                    status: false,
                 };
 
                 // Submit data to Firebase Realtime Database

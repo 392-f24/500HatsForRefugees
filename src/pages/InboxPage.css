@@ -1,8 +1,16 @@
 .box-gap {
     padding-top: 140px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column; /* Ensure items are stacked vertically */
+    align-items: flex-start; /* Align child elements to the left */
+    padding-left: 50px; /* Add left padding for spacing from the edge */
+    padding-right: 50px;
+    gap: 20px; /* Add spacing between elements */
   }
+
 .box {
-    width: 90%;               /* Make the width a percentage of the parent container */
+    width: 100%;               /* Make the width a percentage of the parent container */
     max-width: 1274px;        /* Set a maximum width to prevent it from growing too large */
     height: auto;             /* Allow the height to adjust based on content */
     min-height: 102px;        /* Ensure a minimum height */
@@ -44,38 +52,63 @@
     border: 1px solid #EEBF46;  /* Border color */
     border-radius: 8px;         /* Rounded corners */
     font-family: 'Inter', sans-serif; /* Font family */
-    font-size: 16px;            /* Font size */
-    font-style: normal;         /* Font style */
+    font-size: 1rem;            /* Base font size, responsive */
     font-weight: 700;           /* Font weight */
-    line-height: 150%;          /* Line height */
-    padding: 0.5rem 1rem;       /* Padding for size */
+    line-height: 1.5;           /* Line height */
+    padding: 0.5em 1.5em;       /* Padding, responsive to font size */
     text-align: center;         /* Center-align text */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    width: auto;                /* Allow buttons to resize naturally */
+    flex: 1;                    /* Flex-grow for equal spacing in a flex container */
   }
-
+  
   /* Hover state */
-.toggle-button-group .btn:hover {
+  .toggle-button-group .btn:hover {
     background-color: #EEBF46;  /* Hover background color */
     color: #583D3D;             /* Keep text color on hover */
-    border: 1px solid #EEBF46;  /* Border color */
+    border-color: #EEBF46;
   }
   
-  /* Active (clicked) state */
-  .toggle-button-group .btn.active {
-    background-color: #EEBF46 !important;  /* Clicked background color */
-    color: #583D3D;             /* Text color */
-    border-color: #EEBF46 !important;      /* Match border to clicked color */
-  }
-  
-  /* Focus outline for accessibility */
-  .toggle-button-group .btn:focus {
-    box-shadow: 0 0 0 2px rgba(238, 191, 70, 0.5); /* Soft focus ring */
-    outline: none;                                /* Remove default focus */
-  }
-
+  /* Selected (active and not hovering) state */
+  .toggle-button-group .btn.active,
   .toggle-button-group .btn-check:checked + .btn {
     background-color: #EEBF46;  /* Selected background color */
     color: #583D3D;             /* Selected text color */
-    border-color: #EEBF46;      /* Match border */
+    border-color: #EEBF46;      /* Match border to background */
   }
+  
+  /* Focus state */
+  .toggle-button-group .btn:focus {
+    background-color: #EEBF46;  /* Ensure focus matches active state */
+    color: #583D3D;             /* Ensure consistent text color */
+    border-color: #EEBF46;      /* Match border */
+    box-shadow: none;           /* Remove default focus glow */
+    outline: none;              /* Remove default outline */
+  }
+  
+  /* Media Queries for Responsive Adjustments */
+  
+  /* For small screens */
+  @media (max-width: 768px) {
+    .toggle-button-group .btn {
+      font-size: 0.9rem;       /* Slightly smaller font */
+      padding: 0.4em 1.2em;    /* Adjust padding */
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 576px) {
+    .toggle-button-group {
+      flex-direction: column;  /* Stack buttons vertically */
+      gap: 10px;               /* Add spacing between buttons */
+    }
+  
+    .toggle-button-group .btn {
+      font-size: 0.8rem;       /* Smaller font */
+      padding: 0.3em 1em;      /* Adjust padding for small screens */
+      width: 100%;             /* Full width for stacked layout */
+    }
+  }
+
+  
   
