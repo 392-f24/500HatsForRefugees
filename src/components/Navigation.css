@@ -31,6 +31,7 @@
   font-size: 1.2rem; /* Slightly larger font for subtext */
   font-weight: 400;
   letter-spacing: 0.07em;
+  margin: 0;
 }
 
 /* Navbar styling */

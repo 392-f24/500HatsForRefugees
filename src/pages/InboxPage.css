@@ -1,0 +1,81 @@
+.box-gap {
+    padding-top: 140px;
+  }
+.box {
+    width: 90%;               /* Make the width a percentage of the parent container */
+    max-width: 1274px;        /* Set a maximum width to prevent it from growing too large */
+    height: auto;             /* Allow the height to adjust based on content */
+    min-height: 102px;        /* Ensure a minimum height */
+    border-radius: 20px;      /* Keep the rounded corners */
+    background: #4e342e;      /* Background color */
+    margin: 0 auto;           /* Center the box horizontally */
+    padding: 1rem 2rem 1rem;            /* Add some padding for inner content */
+    box-sizing: border-box;   /* Include padding and border in total size */
+  }
+
+.admin-inbox {
+    color: #EEBF46;
+    font-family: "Archivo Black";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sub-title {
+    color: #FFF;
+    font-family: "Archivo Black";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.box-content {
+    display: flex;
+    justify-content: space-between; /* Push content to the sides */
+    align-items: center;           /* Center items vertically */
+  }
+
+/* Default (unclicked) state */
+.toggle-button-group .btn {
+    background-color: #FFDF8F;   /* Unclicked background color */
+    color: #583D3D;             /* Text color */
+    border: 1px solid #EEBF46;  /* Border color */
+    border-radius: 8px;         /* Rounded corners */
+    font-family: 'Inter', sans-serif; /* Font family */
+    font-size: 16px;            /* Font size */
+    font-style: normal;         /* Font style */
+    font-weight: 700;           /* Font weight */
+    line-height: 150%;          /* Line height */
+    padding: 0.5rem 1rem;       /* Padding for size */
+    text-align: center;         /* Center-align text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+  }
+
+  /* Hover state */
+.toggle-button-group .btn:hover {
+    background-color: #EEBF46;  /* Hover background color */
+    color: #583D3D;             /* Keep text color on hover */
+    border: 1px solid #EEBF46;  /* Border color */
+  }
+  
+  /* Active (clicked) state */
+  .toggle-button-group .btn.active {
+    background-color: #EEBF46 !important;  /* Clicked background color */
+    color: #583D3D;             /* Text color */
+    border-color: #EEBF46 !important;      /* Match border to clicked color */
+  }
+  
+  /* Focus outline for accessibility */
+  .toggle-button-group .btn:focus {
+    box-shadow: 0 0 0 2px rgba(238, 191, 70, 0.5); /* Soft focus ring */
+    outline: none;                                /* Remove default focus */
+  }
+
+  .toggle-button-group .btn-check:checked + .btn {
+    background-color: #EEBF46;  /* Selected background color */
+    color: #583D3D;             /* Selected text color */
+    border-color: #EEBF46;      /* Match border */
+  }
+  
