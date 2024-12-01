@@ -3,16 +3,9 @@ import { Spinner, Card, Row, Col, Modal, Button } from 'react-bootstrap'; // Imp
 import { useState } from 'react';
 import './ImageRequests.css'
 const ImageRequests = ({images}) => {
-    // const [images, imagesError] = useDbData('submissions'); // Fetch images from Firebase Realtime Database
     const [updateData] = useDbUpdate(); // Use the update hook
     const [isModalOpen, setIsModalOpen] = useState(false); // State to track modal visibility
     const [selectedImage, setSelectedImage] = useState(null); // State to track selected image
-
-    // Handle errors if fetching images fails
-    // if (imagesError) {
-    //     console.error("Error fetching images:", imagesError);
-    //     return <div>Error loading images. Please try again later.</div>;
-    // }
 
     if (!images) {
         return (
@@ -62,7 +55,6 @@ const ImageRequests = ({images}) => {
         const confirmDelete = window.confirm('Are you sure you want to reject this submission?');
         if (confirmDelete) {
             const statusPath = `submissions/${selectedImage.timestamp}`;
-            console.log(statusPath)
             try {
                 updateData({[statusPath]:null});
                 console.log(`Deleted data at: ${statusPath}`);

@@ -19,7 +19,7 @@ const AdminNavBar = () => {
   // Function to handle click on the Navbar.Brand and navigate to the landing page
   const handleBrandClick = () => {
     setSelectedLink(""); // Set to "landing" for active link highlight
-    navigate("/"); // Programmatically navigate to the landing page
+    navigate("/inbox"); // Programmatically navigate to the landing page
   };
 
   return (

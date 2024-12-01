@@ -6,7 +6,6 @@ import './components/Buttons.css'
 
 import Navigationbar from './components/Navigation';
 import AdminNavBar from './components/AdminNavBar';
-//import AdminNavigationbar from './components/AdminNavigation'; // TO BE DONE
 
 import LandingPage from './pages/LandingPage';
 import ImpactPage from './pages/ImpactPage';

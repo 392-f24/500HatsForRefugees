@@ -20,9 +20,10 @@ const InboxPage = () => {
         console.error("Error fetching images:", imagesError);
         return <div>Error loading images. Please try again later.</div>;
     }
-    const falseStatusCount = Object.keys(images)
-    .map(key => images[key])
-    .filter(image => image.status === false).length;
+
+    const falseStatusCount = images ? Object.keys(images)
+        .map(key => images[key])
+        .filter(image => image.status === false).length : 0;
 
     return (
         <div className="page-container box-gap">
