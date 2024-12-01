@@ -19,15 +19,21 @@
     display: flex;
     justify-content: center; /* Center the image horizontally */
     align-items: center;     /* Center the image vertically */
+    width: 300px;
     
+}
+
+.greyed-out {
+    filter: grayscale(100%); /* Makes the card appear greyed out */
+    opacity: 0.7;            /* Slight transparency for a muted look */
 }
 
 .image-container {
     display: flex;
     justify-content: center; /* Center the image horizontally */
     align-items: center;     /* Center the image vertically */
-    height: 200px;           /* Fixed height for the square image */
-    width: 200px;            /* Fixed width for the square image */
+    height: 250px;           /* Fixed height for the square image */
+    width: 250px;            /* Fixed width for the square image */
     overflow: hidden;        /* Hide overflow if the image is larger */
     margin-bottom: 1rem;     /* Space between image and text */
 }
@@ -40,4 +46,19 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.05) !important; /* Set a semi-transparent black background */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    border-top: none;
 }

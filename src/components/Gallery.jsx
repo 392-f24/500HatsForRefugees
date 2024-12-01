@@ -48,8 +48,10 @@ const Gallery = () => {
 
     const totalRows = Math.ceil(Object.keys(images).length / imagesPerRow);
 
-    const visibleImages = Object.keys(images).map(key => images[key]);
-
+    const visibleImages = Object.keys(images)
+    .map(key => images[key])
+    .filter(image => image.status === true); // Filter images where status is true
+    
     // Function to stop animation when an image is clicked
     const handleImageClick = (image) => {
         setSelectedImage(image);

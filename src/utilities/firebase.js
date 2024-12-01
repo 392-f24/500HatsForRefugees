@@ -151,10 +151,10 @@ export const uploadImage = async (imageFile) => {
   };
 
   // Update the submission data in the Firebase Realtime Database
-export const submitDataToDatabase = async (data) => {
+export const submitDataToDatabase = async (key, data) => {
     try {
       const dbRef = ref(database, 'submissions'); // Reference to your Firebase path
-      const newSubmissionRef = ref(database, 'submissions/' + Date.now()); // Use timestamp as unique ID
+      const newSubmissionRef = ref(database, 'submissions/' + key); // Use timestamp as unique ID
       await update(newSubmissionRef, data);
       console.log("Data submitted successfully:", data);
     } catch (error) {

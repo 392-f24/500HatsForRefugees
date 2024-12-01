@@ -91,7 +91,7 @@ const SubmitPhotoModal = ({ show, handleClose }) => {
                 };
 
                 // Submit data to Firebase Realtime Database
-                await submitDataToDatabase(data);
+                await submitDataToDatabase(data.timestamp, data);
 
                 console.log('Data submitted:', data);
                 handleClose(); // Close modal after submission

@@ -98,17 +98,18 @@
     align-items: center;
     justify-content: center;
     max-height: 90vh; /* Constrain the modal content to 90% of the viewport height */
-    overflow: hidden; /* Hide overflow */
     background-color: white;
     padding: 10px;
     border-radius: 8px;
+    gap: 10px;
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    max-height: 100%; /* Prevent the modal from extending beyond viewport height */
 }
 
 
 .image-details {
     color: black; /* Text color */
     padding: 15px;
-    margin-top: 20px;
     display: inline-block; /* Ensures content width adjusts to the text */
     width: 100%; /* Optional: makes it span the full modal width */
     text-align: left; /* Align text to the left */
