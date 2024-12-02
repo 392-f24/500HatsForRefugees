@@ -1,0 +1,114 @@
+.box-gap {
+    padding-top: 140px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column; /* Ensure items are stacked vertically */
+    align-items: flex-start; /* Align child elements to the left */
+    padding-left: 50px; /* Add left padding for spacing from the edge */
+    padding-right: 50px;
+    gap: 20px; /* Add spacing between elements */
+  }
+
+.box {
+    width: 100%;               /* Make the width a percentage of the parent container */
+    max-width: 1274px;        /* Set a maximum width to prevent it from growing too large */
+    height: auto;             /* Allow the height to adjust based on content */
+    min-height: 102px;        /* Ensure a minimum height */
+    border-radius: 20px;      /* Keep the rounded corners */
+    background: #4e342e;      /* Background color */
+    margin: 0 auto;           /* Center the box horizontally */
+    padding: 1rem 2rem 1rem;            /* Add some padding for inner content */
+    box-sizing: border-box;   /* Include padding and border in total size */
+  }
+
+.admin-inbox {
+    color: #EEBF46;
+    font-family: "Archivo Black";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sub-title {
+    color: #FFF;
+    font-family: "Archivo Black";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.box-content {
+    display: flex;
+    justify-content: space-between; /* Push content to the sides */
+    align-items: center;           /* Center items vertically */
+  }
+
+/* Default (unclicked) state */
+.toggle-button-group .btn {
+    background-color: #FFDF8F;   /* Unclicked background color */
+    color: #583D3D;             /* Text color */
+    border: 1px solid #EEBF46;  /* Border color */
+    border-radius: 8px;         /* Rounded corners */
+    font-family: 'Inter', sans-serif; /* Font family */
+    font-size: 1rem;            /* Base font size, responsive */
+    font-weight: 700;           /* Font weight */
+    line-height: 1.5;           /* Line height */
+    padding: 0.5em 1.5em;       /* Padding, responsive to font size */
+    text-align: center;         /* Center-align text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+    width: auto;                /* Allow buttons to resize naturally */
+    flex: 1;                    /* Flex-grow for equal spacing in a flex container */
+  }
+  
+  /* Hover state */
+  .toggle-button-group .btn:hover {
+    background-color: #EEBF46;  /* Hover background color */
+    color: #583D3D;             /* Keep text color on hover */
+    border-color: #EEBF46;
+  }
+  
+  /* Selected (active and not hovering) state */
+  .toggle-button-group .btn.active,
+  .toggle-button-group .btn-check:checked + .btn {
+    background-color: #EEBF46;  /* Selected background color */
+    color: #583D3D;             /* Selected text color */
+    border-color: #EEBF46;      /* Match border to background */
+  }
+  
+  /* Focus state */
+  .toggle-button-group .btn:focus {
+    background-color: #EEBF46;  /* Ensure focus matches active state */
+    color: #583D3D;             /* Ensure consistent text color */
+    border-color: #EEBF46;      /* Match border */
+    box-shadow: none;           /* Remove default focus glow */
+    outline: none;              /* Remove default outline */
+  }
+  
+  /* Media Queries for Responsive Adjustments */
+  
+  /* For small screens */
+  @media (max-width: 768px) {
+    .toggle-button-group .btn {
+      font-size: 0.9rem;       /* Slightly smaller font */
+      padding: 0.4em 1.2em;    /* Adjust padding */
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 576px) {
+    .toggle-button-group {
+      flex-direction: column;  /* Stack buttons vertically */
+      gap: 10px;               /* Add spacing between buttons */
+    }
+  
+    .toggle-button-group .btn {
+      font-size: 0.8rem;       /* Smaller font */
+      padding: 0.3em 1em;      /* Adjust padding for small screens */
+      width: 100%;             /* Full width for stacked layout */
+    }
+  }
+
+  
+  

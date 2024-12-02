@@ -1,0 +1,64 @@
+.image-requests {
+    color: #C57979;
+    font-family: "Archivo Black";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: left; /* Ensures text alignment to the left */
+    margin: 0;        /* Removes any additional margins */
+    padding-left: 0;  /* Aligns with the left of the page */
+    padding-bottom: 20px;
+}
+.image-card {
+    color: #FFF;               /* Set text color inside the card */
+    border-radius: 10px;       /* Optional: add rounded corners to the card */
+    background-color: #C57979;
+    border-color:  #C57979;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center;     /* Center the image vertically */
+    width: 300px;
+    
+}
+
+.greyed-out {
+    filter: grayscale(100%); /* Makes the card appear greyed out */
+    opacity: 0.7;            /* Slight transparency for a muted look */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center;     /* Center the image vertically */
+    height: 250px;           /* Fixed height for the square image */
+    width: 250px;            /* Fixed width for the square image */
+    overflow: hidden;        /* Hide overflow if the image is larger */
+    margin-bottom: 1rem;     /* Space between image and text */
+}
+
+.expand {
+    text-align: center;
+    color: #583D3D;
+    font-family: "Archivo Black";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.05) !important; /* Set a semi-transparent black background */
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    border-top: none;
+}
