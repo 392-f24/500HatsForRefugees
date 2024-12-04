@@ -46,7 +46,7 @@ const LoginPage = () => {
       };
 
     return (
-        <div className="page-container">
+        <div className="page-container-auth-page">
         <div className="auth-page">
             <h2>Login</h2>
             {error && <div className="error-message">{error}</div>}

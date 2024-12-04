@@ -1,5 +1,5 @@
 /* Page Container Styling */
-.page-container {
+.page-container-auth-page {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
     align-items: center;    /* Center content horizontally */
