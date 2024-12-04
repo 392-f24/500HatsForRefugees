@@ -20,7 +20,7 @@ const AdminLogin = () => {
       console.log(result);
       if (result.isAdmin) {
         console.log('Admin login successful:', result.user);
-        navigate('/adminDashboard'); 
+        navigate('/inbox'); 
       }
     } catch (error) {
       setShake(true); 
