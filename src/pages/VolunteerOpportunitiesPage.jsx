@@ -17,7 +17,14 @@ const VolunteerOpportunitiesPage = () => {
 
   const [showAddEvent, setAddEvent] = useState(false);
   const [showDonationForm, setShowDonationForm] = useState(false);
-  const [events, eventsError] = useDbData('/events'); // Fetch events data from Firebase
+  const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
+
+  // Filter events by status
+  const events = dbEvents
+    ? Object.keys(dbEvents)
+        .map((key) => ({ id: key, ...dbEvents[key] }))
+        .filter((event) => event.EventStatus === 'accepted')
+    : [];
 
   const handleFilterChange = (e) => {
     setFilterType(e.target.value);
