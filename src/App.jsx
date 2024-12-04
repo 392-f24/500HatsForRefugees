@@ -15,6 +15,8 @@ import AdminControlDashboard from './pages/AdminControlDashboard';
 import '@fontsource/archivo';
 import '@fontsource/archivo-black';
 import InboxPage from './pages/InboxPage';
+import LoginPage from './pages/UserLogin'
+import SignUpPage from './pages/UserSignUp'
 
 
 const App = () => {
@@ -39,6 +41,8 @@ const App = () => {
             <Route path="/adminLogin" element={<AdminLogin />} />
             <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
             <Route path="/inbox" element={<InboxPage/>}/>
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/signUp" element={<SignUpPage/>}/>
           </Routes>
         </div>
      </div>

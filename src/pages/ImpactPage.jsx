@@ -5,9 +5,22 @@ import { Button } from "react-bootstrap";
 import SubmitPhotoModal from '../components/SubmitPhotoModal';
 
 import "./ImpactPage.css"; // Make sure to import your stylesheet
+//auth 
+import { useAuthState } from '../utilities/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const ImpactPage = () => {
   const [modalShow, setModalShow] = useState(false);
+  //auth 
+  const [user] = useAuthState(); 
+  const navigate = useNavigate(); 
+  const handleSendPhotoClick = () => {
+    if (!user) {
+      navigate('/login'); // Redirect to login if unauthorized
+    } else {
+      setModalShow(true); // Show the photo submission modal if authorized
+    }
+  };
 
   return (
     <div className="page-container">
@@ -23,8 +36,7 @@ const ImpactPage = () => {
       </div>
       <div className="feature-photo-section">
         <h5 className="feature-photo-heading">Have an image you would like to have featured here?</h5>
-        <Button className="yellow-btn" 
-          onClick={() => setModalShow(true)}>
+        <Button className="yellow-btn" onClick={handleSendPhotoClick}>
           Send Your Photo Here
         </Button>
     </div>
