@@ -9,11 +9,15 @@
   .contentWrapper {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
   }
   
   .eventsList {
-    flex: 1;
+    flex: 0 0 300px;
     margin-right: 20px;
     height: 400px;
     overflow-y: auto;
@@ -27,7 +31,9 @@
   
   .mapContainer {
     flex: 2;
+    min-width: 400px;
     height: 450px; 
+    width: 80%;
   }
   
 .filterControls {
@@ -56,7 +62,7 @@
 
   
 .event-card {
-  width: 100%; /* Make cards take full width of container */
+  width: 100%; 
   max-width: 400px; /* Optional: Set a maximum width for each card */
   margin: 0 auto; /* Center the cards horizontally */
   background-color: #C57979;
