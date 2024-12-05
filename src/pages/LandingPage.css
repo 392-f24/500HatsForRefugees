@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column; /* Stack items vertically */
     align-items: center;
-    height: 100vh;
+    height: auto;
     /* height: 100%; */
     padding-top: 150px;
     gap: 50px; /* Add spacing between sections */
@@ -66,11 +66,24 @@
     display: block;
 }
 
-.UpcomingEventsContainer{
+.UpcomingEventsContainer {
     display: flex;
     flex-direction: column;
-
+    align-items: center; /* Center the content horizontally */
+    justify-content: flex-start; /* Ensure items grow downward */
+    padding: 20px; /* Add some padding for spacing */
+    width: 100%; /* Ensure it stretches fully */
+    box-sizing: border-box; /* Include padding in width calculations */
 }
+
+.eventsList-upcoming {
+    display: flex;
+    flex-direction: column; /* Stack event cards vertically */
+    align-items: center; /* Center the cards horizontally */
+    gap: 20px; /* Add consistent spacing between event cards */
+    width: 100%; /* Let the list stretch to fit */
+}
+
 .UpcomingEvents {
     font-family: 'Archivo Black', sans-serif;
     color: #C57979;
@@ -84,10 +97,11 @@
     margin-bottom: 20px;
     background-color: #C57979;
     color: white; 
-    width: 80%;
-    max-width: 1200px;
-    min-width: 700px;
-  }
+    width: 100%; /* Stretch to fill parent width */
+    max-width: 800px; /* Limit width for better readability */
+    border-radius: 8px; /* Optional: rounded corners for better aesthetics */
+}
+
   
 /* .event-card .card-body {
     display: flex;

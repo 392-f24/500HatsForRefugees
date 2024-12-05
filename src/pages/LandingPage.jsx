@@ -55,7 +55,7 @@ const LandingPage = () => {
       <div className="UpcomingEventsContainer">
         <h1 className="UpcomingEvents">Upcoming Events</h1>
 
-        <div className="eventsList">
+        <div className="eventsList-upcoming">
           {eventsError && <p>Error loading events: {eventsError.message}</p>}
           {!events && <p>Loading events...</p>}
           {upcomingEvents.map((event, index) => (

@@ -15,9 +15,15 @@
   .eventsList {
     flex: 1;
     margin-right: 20px;
-    height: 450px;
-    overflow-y: auto; 
-  }
+    height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    width: 100%; 
+    max-width: 100%; 
+}
+
   
   .mapContainer {
     flex: 2;
@@ -50,10 +56,13 @@
 
   
 .event-card {
-    margin-bottom: 20px;
-    background-color: #C57979;
-    color: white; 
-  }
+  width: 100%; /* Make cards take full width of container */
+  max-width: 400px; /* Optional: Set a maximum width for each card */
+  margin: 0 auto; /* Center the cards horizontally */
+  background-color: #C57979;
+  color: white;
+}
+
   
 .event-card .card-body {
     display: flex;
