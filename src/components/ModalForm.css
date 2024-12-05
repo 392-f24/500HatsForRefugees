@@ -7,6 +7,7 @@
     overflow: hidden; /* Ensure content doesn't overflow */
     max-height: 100%; /* Prevent the modal from extending beyond viewport height */
     height: 90%; /* Ensure the modal uses the full available height */
+    /* background-color: #000000; */
   }
   
   
@@ -38,6 +39,21 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-top: -30px;
+  }
+
+  .title-involved{
+    color: #FAF5F2 !important;
+    font-family: "Archivo Black";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+  }
+  .x-button{
+    margin-right: 20px;
+    margin-top: 20px;
   }
 
   .sub-title {
@@ -47,6 +63,26 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+  }
+  .sub-title-involved {
+    color: #FFDF8F;
+    font-family: "Archivo Black";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: -30px;
+  }
+
+  .sub-title-involved-section {
+    text-align: center;
+    color: #FFDF8F;
+    font-family: "Archivo Black";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 40px;
   }
   
   .modalBody {
@@ -81,3 +117,102 @@
     gap: 5px;
     border-top: none;
   }
+
+  .detailsText{
+    color: #ffffff;
+    margin-left: 20px;
+  }
+  .detailsText-section {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Archivo', sans-serif;
+    width: 100%;
+
+    /* Flexbox centering */
+    align-items: center; /* Centers the content horizontally */
+    justify-content: center; /* Centers the content vertically (if needed) */
+}
+.detailsText-section p, .detailsText p {
+  margin: 4px 0; /* Adjust this value to control vertical spacing */
+}
+
+
+
+.centered {
+  display: flex;       /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center;  /* Center vertically */
+  flex-direction: column;
+  height: 100%;        /* Ensure the container takes the full height (if needed) */
+}
+
+.yellow-btn-involved{
+  border-radius: 10px;
+  background-color: #EEBF46; /* Button background */
+  color: #ffffff; /* Text color */
+  font-family: 'Inter', sans-serif;
+  font-size: 20px; /* Smaller font size */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: none; /* Remove default border */
+  padding: 8px 16px; /* Reduced padding for a smaller button */
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  /* margin-top:10px; */
+}
+
+.yellow-btn-involved-disabled{
+  border-radius: 10px;
+  background-color: #B5B5B5;
+  color: #000000; 
+  font-family: 'Inter', sans-serif;
+  font-size: 20px; 
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: none; 
+  padding: 8px 16px;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  /* margin-top:10px; */
+
+}
+
+
+/* Button Hover Effect */
+.yellow-btn-involved:hover {
+  background-color: #d9a63f !important;
+  transform: scale(1.05) !important; 
+  color: white !important;
+}
+
+.yellow-btn-footer{
+
+  border-radius: 10px;
+  background-color: #EEBF46; 
+  color: #583D3D; 
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: none; 
+  padding: 8px 16px; 
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+}
+
+.success-text {
+  color: green;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}

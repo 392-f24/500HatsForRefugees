@@ -5,6 +5,7 @@ import './VolunteerOpportunitiesPage.css';
 import axios from 'axios';
 import './Pages.css';
 import AddEvent from '../components/AddEvent';
+import GetInvolvedNow from '../components/GetInvolvedNow.jsx';
 import DonationForm from '../components/DonationForm';
 import GoogleMapComponent from '../components/GoogleMapComponent';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +18,16 @@ const VolunteerOpportunitiesPage = () => {
 
   const [showAddEvent, setAddEvent] = useState(false);
   const [showDonationForm, setShowDonationForm] = useState(false);
+  const [showGetInvolved, setGetInvolved] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null); // Track the currently selected event
+
   const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
+
+
+  const handleGetInvolvedClick = (event) => {
+    setSelectedEvent(event); 
+    setGetInvolved(true); 
+  };
 
   // Filter events by status
   const eventsByStatus = dbEvents
@@ -148,7 +158,16 @@ const VolunteerOpportunitiesPage = () => {
           <AddEvent show={showAddEvent} closeModal={() => setAddEvent(false)} />
         )}
 
-        {showDonationForm && <DonationForm show={showDonationForm} closeModal={() => setShowDonationForm(false)} />}        <h4 className="sectionTitle">Upcoming Events</h4>
+        {showDonationForm && <DonationForm show={showDonationForm} closeModal={() => setShowDonationForm(false)} />} 
+
+        {showGetInvolved && selectedEvent && (
+        <GetInvolvedNow 
+          show={showGetInvolved} 
+          closeModal={() => setGetInvolved(false)} 
+          event={selectedEvent} 
+        />
+      )}      
+         <h4 className="sectionTitle">Upcoming Events</h4>
 
         {/* Filter Controls */}
         <div className="filterControls">
@@ -191,7 +210,7 @@ const VolunteerOpportunitiesPage = () => {
                       <strong>Address:</strong> {event.Address}<br />
                       {/* <strong>Status:</strong> {event.EventStatus} */}
                     </Card.Text>
-                    <Button className="yellow-btn">More Info</Button>
+                    <Button className="yellow-btn" onClick={() => handleGetInvolvedClick(event)}>Get Involved Now!</Button>
                   </Card.Body>
                 </Card>
               ))}
