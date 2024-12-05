@@ -4,6 +4,7 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import "./InboxPage.css"
 import ImageRequests from '../components/ImageRequests';
 import EventRequests from '../components/EventRequests';
+import VolunteerRequests from '../components/VolunteerRequests';
 import { Badge } from 'react-bootstrap';
 import { useDbData } from '../utilities/firebase'; // Import the useDbData hook
 
@@ -33,6 +34,14 @@ const InboxPage = () => {
             .filter(event => event.EventStatus === 'pending').length
         : 0;
 
+    const unseenVolunteersCount = events
+        ? Object.keys(events)
+            .map((key) => events[key])
+            .filter((event) => event.EventStatus === 'accepted')
+            .flatMap((event) => event.CurrentVolunteers || [])
+            .filter((volunteer) => !volunteer.seen).length
+        : 0;
+
 
     return (
         <div className="page-container box-gap">
@@ -60,8 +69,9 @@ const InboxPage = () => {
                         <ToggleButton id="tbg-radio-3" value={3}>
                             donations
                         </ToggleButton>
-                        <ToggleButton id="tbg-radio-4" value={4}>
+                        <ToggleButton id="tbg-radio-4" value={4} className="d-flex align-items-center">
                             volunteers
+                            {unseenVolunteersCount > 0 && <Badge bg="danger" className="ms-2">{unseenVolunteersCount}</Badge>}
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
@@ -69,6 +79,7 @@ const InboxPage = () => {
             {/* Conditionally render the ImageRequests component */}
             {selectedOption === 1 && <ImageRequests images={images} />}
             {selectedOption === 2 && <EventRequests events={events} />}
+            {selectedOption === 4 && <VolunteerRequests events={events} />}
         </div>
     );
 }
