@@ -9,8 +9,14 @@ import './LandingPage.css';
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const [events, eventsError] = useDbData('/events'); // Fetch events data from Firebase
+  const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
   const [upcomingEvents, setUpcomingEvents] = useState([]);
+
+  const events = dbEvents
+    ? Object.keys(dbEvents)
+      .map((key) => ({ id: key, ...dbEvents[key] }))
+      .filter((event) => event.EventStatus === 'accepted')
+    : [];
 
   useEffect(() => {
     if (events) {
@@ -19,7 +25,7 @@ const LandingPage = () => {
       const filteredAndSortedEvents = Object.values(events)
         .filter((event) => new Date(event.Date) >= today) // Keep only events with future dates
         .sort((a, b) => new Date(a.Date) - new Date(b.Date)); // Sort by date in ascending order
-      
+
       setUpcomingEvents(filteredAndSortedEvents);
     }
   }, [events]);
@@ -43,10 +49,10 @@ const LandingPage = () => {
           </button>
         </div>
         <div className="VWU-right">
-          <img 
-            src="/LandingPageImage.jpg" 
-            alt="Volunteer with us" 
-            className="imageContainer" 
+          <img
+            src="/LandingPageImage.jpg"
+            alt="Volunteer with us"
+            className="imageContainer"
           />
         </div>
       </div>
@@ -71,7 +77,7 @@ const LandingPage = () => {
                 <div className="centered">
                   <Button className="yellow-btn">More Info</Button>
                 </div>
-                
+
               </Card.Body>
             </Card>
           ))}
