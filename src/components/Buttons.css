@@ -65,3 +65,9 @@
     transform: scale(1.05) !important; /* Slight zoom effect */
     color: white !important;
 }
+
+.yellow-btn-2:hover {
+  background-color: #d9a63f !important;
+  transform: scale(1.05) !important;
+  color: white !important;
+}

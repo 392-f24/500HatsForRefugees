@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDbData,useAuthState } from '../utilities/firebase.js';
+import { useDbData, useAuthState } from '../utilities/firebase.js';
 import { Card, Button } from 'react-bootstrap';
 import './VolunteerOpportunitiesPage.css';
 import axios from 'axios';
@@ -20,20 +20,34 @@ const VolunteerOpportunitiesPage = () => {
   const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
 
   // Filter events by status
-  const events = dbEvents
+  const eventsByStatus = dbEvents
     ? Object.keys(dbEvents)
-        .map((key) => ({ id: key, ...dbEvents[key] }))
-        .filter((event) => event.EventStatus === 'accepted')
+      .map((key) => ({ id: key, ...dbEvents[key] }))
+      .filter((event) => event.EventStatus === 'accepted')
     : [];
+
+  // Filter by upcoming events
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const parseDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(year, month - 1, day);
+  };
+
+  // Upcoming events
+  const events = eventsByStatus.filter(
+    (event) => parseDate(event.Date) >= today
+  );
 
   const handleFilterChange = (e) => {
     setFilterType(e.target.value);
   };
-  
+
   const handleZipChange = (e) => {
     setZipCode(e.target.value);
   };
-  
+
   const handleRadiusChange = (e) => {
     setRadius(e.target.value ? parseFloat(e.target.value) : null); // Convert to float or set to null
   };
@@ -61,7 +75,7 @@ const VolunteerOpportunitiesPage = () => {
     return R * c;
   };
   //added by haichen  auth needed for request event /donation button:
-  const [user] = useAuthState(); 
+  const [user] = useAuthState();
   const navigate = useNavigate();
   const handleAddEventClick = () => {
     if (!user) {
@@ -70,7 +84,7 @@ const VolunteerOpportunitiesPage = () => {
       setAddEvent(true); // Open the form if authorized
     }
   };
-  
+
   const handleDonateClick = () => {
     if (!user) {
       navigate('/login'); // Redirect to login if unauthorized
@@ -78,7 +92,7 @@ const VolunteerOpportunitiesPage = () => {
       setShowDonationForm(true); // Open the form if authorized
     }
   };
-   
+
   useEffect(() => {
     const filterEventsByDistanceAndType = async () => {
       if (!events || !zipCode) return;

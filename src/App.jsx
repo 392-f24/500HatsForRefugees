@@ -20,6 +20,7 @@ import LoginPage from './pages/UserLogin'
 import SignUpPage from './pages/UserSignUp'
 
 import EventsPage from './pages/EventsPage';
+import DonationPage from './pages/DonationPage';
 
 
 const App = () => {
@@ -28,7 +29,8 @@ const App = () => {
   const showNavbar = !location.pathname.toLowerCase().includes('/adminlogin') &&
                      !location.pathname.toLowerCase().includes('/admindashboard') &&
                      !location.pathname.toLowerCase().includes('/inbox') &&
-                     !location.pathname.toLowerCase().includes('/events');
+                     !location.pathname.toLowerCase().includes('/events') &&
+                     !location.pathname.toLowerCase().includes('/donations');
 
 
   return (
@@ -50,6 +52,7 @@ const App = () => {
             <Route path="/signUp" element={<SignUpPage/>}/>
 
             <Route path="/events" element={<EventsPage />}/>
+            <Route path="/donations" element={<DonationPage />}/>
 
           </Routes>
         </div>

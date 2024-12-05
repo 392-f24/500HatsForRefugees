@@ -25,16 +25,23 @@ const EventsPage = () => {
 
     // Separate past and upcoming events
     const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const sortedEvents = Object.keys(events)
         .map((key) => ({ id: key, ...events[key] }))
         .filter((event) => event.EventStatus === 'accepted');
 
+    const parseDate = (dateString) => {
+        const [year, month, day] = dateString.split('-');
+        return new Date(year, month - 1, day);
+    };
+
     const pastEvents = sortedEvents.filter(
-        (event) => new Date(event.Date) < today
+        (event) => parseDate(event.Date) < today
     );
 
     const upcomingEvents = sortedEvents.filter(
-        (event) => new Date(event.Date) >= today
+        (event) => parseDate(event.Date) >= today
     );
 
     const handleToggleChange = (value) => setSelectedOption(value);

@@ -4,6 +4,8 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import "./InboxPage.css"
 import ImageRequests from '../components/ImageRequests';
 import EventRequests from '../components/EventRequests';
+import VolunteerRequests from '../components/VolunteerRequests';
+import DonationRequests from '../components/DonationRequests';
 import { Badge } from 'react-bootstrap';
 import { useDbData } from '../utilities/firebase'; // Import the useDbData hook
 
@@ -11,6 +13,7 @@ import { useDbData } from '../utilities/firebase'; // Import the useDbData hook
 const InboxPage = () => {
     const [images, imagesError] = useDbData('submissions'); // Fetch images from Firebase Realtime Database
     const [events] = useDbData('events');
+    const [donations] = useDbData('donations');
     const [selectedOption, setSelectedOption] = useState(1); // State for the selected toggle
 
     const handleToggleChange = (value) => {
@@ -31,6 +34,20 @@ const InboxPage = () => {
         ? Object.keys(events)
             .map(key => events[key])
             .filter(event => event.EventStatus === 'pending').length
+        : 0;
+
+    const unseenVolunteersCount = events
+        ? Object.keys(events)
+            .map((key) => events[key])
+            .filter((event) => event.EventStatus === 'accepted')
+            .flatMap((event) => event.CurrentVolunteers || [])
+            .filter((volunteer) => !volunteer.seen).length
+        : 0;
+
+    const notReceivedDonationsCount = donations
+        ? Object.keys(donations)
+            .map((key) => donations[key])
+            .filter((donation) => !donation.received).length
         : 0;
 
 
@@ -57,11 +74,14 @@ const InboxPage = () => {
                             events
                             {pendingEventsCount > 0 && <Badge bg="danger" className='ms-2'>{pendingEventsCount}</Badge>}
                         </ToggleButton>
-                        <ToggleButton id="tbg-radio-3" value={3}>
+                        
+                        <ToggleButton id="tbg-radio-3" value={3} className="d-flex align-items-center">
                             donations
+                            {notReceivedDonationsCount > 0 && <Badge bg="danger" className='ms-2'>{notReceivedDonationsCount}</Badge>}
                         </ToggleButton>
-                        <ToggleButton id="tbg-radio-4" value={4}>
+                        <ToggleButton id="tbg-radio-4" value={4} className="d-flex align-items-center">
                             volunteers
+                            {unseenVolunteersCount > 0 && <Badge bg="danger" className="ms-2">{unseenVolunteersCount}</Badge>}
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
@@ -69,6 +89,8 @@ const InboxPage = () => {
             {/* Conditionally render the ImageRequests component */}
             {selectedOption === 1 && <ImageRequests images={images} />}
             {selectedOption === 2 && <EventRequests events={events} />}
+            {selectedOption === 3 && <DonationRequests donations={donations} />}
+            {selectedOption === 4 && <VolunteerRequests events={events} />}
         </div>
     );
 }
