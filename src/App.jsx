@@ -16,13 +16,19 @@ import '@fontsource/archivo';
 import '@fontsource/archivo-black';
 import InboxPage from './pages/InboxPage';
 
+import LoginPage from './pages/UserLogin'
+import SignUpPage from './pages/UserSignUp'
+
+import EventsPage from './pages/EventsPage';
+
 
 const App = () => {
   const location = useLocation();
 
   const showNavbar = !location.pathname.toLowerCase().includes('/adminlogin') &&
                      !location.pathname.toLowerCase().includes('/admindashboard') &&
-                     !location.pathname.toLowerCase().includes('/inbox');
+                     !location.pathname.toLowerCase().includes('/inbox') &&
+                     !location.pathname.toLowerCase().includes('/events');
 
 
   return (
@@ -39,6 +45,12 @@ const App = () => {
             <Route path="/adminLogin" element={<AdminLogin />} />
             <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
             <Route path="/inbox" element={<InboxPage/>}/>
+
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/signUp" element={<SignUpPage/>}/>
+
+            <Route path="/events" element={<EventsPage />}/>
+
           </Routes>
         </div>
      </div>

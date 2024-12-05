@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDbData } from '../utilities/firebase.js';
+import { useDbData,useAuthState } from '../utilities/firebase.js';
 import { Card, Button } from 'react-bootstrap';
 import './VolunteerOpportunitiesPage.css';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import './Pages.css';
 import AddEvent from '../components/AddEvent';
 import DonationForm from '../components/DonationForm';
 import GoogleMapComponent from '../components/GoogleMapComponent';
+import { useNavigate } from 'react-router-dom';
 
 const VolunteerOpportunitiesPage = () => {
   const [filterType, setFilterType] = useState('all');
@@ -16,7 +17,14 @@ const VolunteerOpportunitiesPage = () => {
 
   const [showAddEvent, setAddEvent] = useState(false);
   const [showDonationForm, setShowDonationForm] = useState(false);
-  const [events, eventsError] = useDbData('/events'); // Fetch events data from Firebase
+  const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
+
+  // Filter events by status
+  const events = dbEvents
+    ? Object.keys(dbEvents)
+        .map((key) => ({ id: key, ...dbEvents[key] }))
+        .filter((event) => event.EventStatus === 'accepted')
+    : [];
 
   const handleFilterChange = (e) => {
     setFilterType(e.target.value);
@@ -52,7 +60,25 @@ const VolunteerOpportunitiesPage = () => {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
-
+  //added by haichen  auth needed for request event /donation button:
+  const [user] = useAuthState(); 
+  const navigate = useNavigate();
+  const handleAddEventClick = () => {
+    if (!user) {
+      navigate('/login'); // Redirect to login if unauthorized
+    } else {
+      setAddEvent(true); // Open the form if authorized
+    }
+  };
+  
+  const handleDonateClick = () => {
+    if (!user) {
+      navigate('/login'); // Redirect to login if unauthorized
+    } else {
+      setShowDonationForm(true); // Open the form if authorized
+    }
+  };
+   
   useEffect(() => {
     const filterEventsByDistanceAndType = async () => {
       if (!events || !zipCode) return;

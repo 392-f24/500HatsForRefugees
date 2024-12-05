@@ -3,10 +3,12 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import headerIcon from '/HatLogo.svg';
-
+import { useAuthState, signOut , useDbData } from "../utilities/firebase";
 import "./Navigation.css";
 
 const Navigationbar = () => {
+  const [user] = useAuthState();
+  const [userData, userDataError] = useDbData(user ? `users/${user.uid}` : null);
   const [selectedLink, setSelectedLink] = useState("");
   const location = useLocation(); // Get current location to check for active route
   const navigate = useNavigate(); // Get navigate function from react-router-dom
@@ -22,6 +24,16 @@ const Navigationbar = () => {
   const handleBrandClick = () => {
     setSelectedLink(""); // Set to "landing" for active link highlight
     navigate("/"); // Programmatically navigate to the landing page
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      console.log("User signed out successfully");
+      navigate("/login"); 
+    } catch (error) {
+      console.error("Error during logout:", error.message);
+    }
   };
 
   return (
@@ -48,14 +60,41 @@ const Navigationbar = () => {
                 {label}
               </NavLink>
             ))}
-            {/* Login and Signup Buttons */}
-            <div className="login-signup-container ms-3">
-              <Button className="black-btn" variant="dark" as={NavLink} to="/login">
-                LOG IN
-              </Button>
-              <Button className="white-btn" variant="light" as={NavLink} to="/signUp">
-                SIGN UP
-              </Button>
+              {/* Dynamic Login/Logout Buttons */}
+              <div className="login-signup-container ms-3 ">
+              {user ? (
+                <>
+                  <span className="brand-subtext">
+                    Welcome, {userData?.username || user.email}
+                  </span>
+                  <Button
+                    className="white-btn" 
+                    variant="light"
+                    onClick={handleLogout}
+                  >
+                    LOG OUT
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    className="black-btn"
+                    variant="dark"
+                    as={NavLink}
+                    to="/login"
+                  >
+                    LOG IN
+                  </Button>
+                  <Button
+                    className="white-btn"
+                    variant="light"
+                    as={NavLink}
+                    to="/signUp"
+                  >
+                    SIGN UP
+                  </Button>
+                </>
+              )}
             </div>
           </Nav>
         </Navbar.Collapse>
