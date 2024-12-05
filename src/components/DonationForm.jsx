@@ -14,11 +14,32 @@ const DonationForm = ({ show, closeModal }) => {
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
   const [updateData] = useDbUpdate('/donations');
-  const [events, eventsError] = useDbData('/events');
+  const [dbEvents, eventsError] = useDbData('/events');
+
+  // Filter events by status
+  const eventsByStatus = dbEvents
+    ? Object.keys(dbEvents)
+      .map((key) => ({ id: key, ...dbEvents[key] }))
+      .filter((event) => event.EventStatus === 'accepted')
+    : [];
+
+  // Filter by upcoming events
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const parseDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(year, month - 1, day);
+  };
+
+  // Upcoming events
+  const events = eventsByStatus.filter(
+    (event) => parseDate(event.Date) >= today
+  );
 
   const handleSubmit = async () => {
     if (!donationItem || (!monetaryAmt && donationItem === 'Money') || (!hatQuantity && donationItem !== 'Money')
-        || (!selectedEventID && donationMode === 'Dropoff at Donation Event')) {
+      || (!selectedEventID && donationMode === 'Dropoff at Donation Event')) {
       alert('Please fill in all required fields.');
       return;
     }
@@ -33,6 +54,7 @@ const DonationForm = ({ show, closeModal }) => {
       HatQuantity: donationItem !== 'Money' ? parseInt(hatQuantity, 10) : null,
       MonetaryAmt: donationItem === 'Money' ? parseInt(monetaryAmt, 10) : null,
       SelectedEventID: donationMode === 'Dropoff at Donation Event' ? selectedEventID : null,
+      received: false
     };
 
     try {
@@ -70,9 +92,9 @@ const DonationForm = ({ show, closeModal }) => {
         <Form>
           <Form.Group className="mb-3">
             <Form.Label className="inputSection">Donation Item</Form.Label>
-            <Form.Select 
+            <Form.Select
               className="input fullWidth"
-              value={donationItem} 
+              value={donationItem}
               onChange={(e) => setDonationItem(e.target.value)}
             >
               <option value="Knitted Hats">Knitted Hats</option>
