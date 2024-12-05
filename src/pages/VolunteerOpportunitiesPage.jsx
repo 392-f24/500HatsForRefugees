@@ -201,11 +201,46 @@ const VolunteerOpportunitiesPage = () => {
             </div>
           </div>
         )}
+        <div>
+          <h4 className="sectionTitle">About our Opportunities</h4>
+          <div className="AboutEventsContainer">
+            <div className="Box1">
+              <p className="EventsInfoTitle">Have an extra hat?</p>
+              <p className="EventsInfoText">
+                And you don't know what to do with it? 500 Hats for Refugees collects hat donations during our events scattered throughout the Chicago area. Come drop by to drop off a hat and help a refugee. 
+
+              </p>
+              </div>
+            <div className="Box2">
+              <p className="EventsInfoTitle">Knitting Collab Event!</p>
+              <p className="EventsInfoText">
+                At 500 Hats for Refugees we love working with creators from all over the world. At our knitting events we host a space for local Chicago knitters, from the experienced to novice, to create hats!
+              </p>
+              </div>
+              <div className="Box3">
+              <p className="EventsInfoTitle">Hot Chocolate and Hats</p>
+              <p className="EventsInfoText">
+                Our most popular event partners with Chicago venues to set up a hot chocolate stand and distribute hats to refugees in the area. We always appreciate volunteers for these events!
+              </p>
+              </div>
+              <div className="Box4">
+              <p className="EventsInfoTitle">Hat Sorting</p>
+              <p className="EventsInfoText">
+                500 Hats, recieves donations of hats and hot chocolate & so much more every day. At our Hat sorting events, volunteers can help Margie organize resources in preparation for upcoming events.
+              </p>
+              </div>
+          </div>
+
+        </div>
+        
         <div className='btn-section'>
-          <button className="yellow-btn" onClick={handleAddEventClick}>
+        <h4 className="sectionTitle">Want to Request an Event?</h4>
+        <h4 className="">Send Margie a message about the event you'd like to host!</h4>
+          <button className="yellow-btn" onClick={() => setAddEvent(true)}>
             Request an Event
           </button>
-          <button className="yellow-btn" onClick={handleDonateClick}>
+          <h4 className="">We also welcome donations of any kind!</h4>
+          <button className="yellow-btn" onClick={() => setShowDonationForm(true)}>
             Donate Today!
           </button>
         </div>
