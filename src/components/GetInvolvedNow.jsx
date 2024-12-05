@@ -147,6 +147,63 @@ const GetInvolvedNow = ({ show, closeModal, event }) => {
           )}
 
 
+        {event?.Type === 'Hat Knitting' && (
+          <div className="GetInvovledSection">
+            <h3 className="sub-title-involved-section">Volunteer Responsibiliites</h3>
+            <div className="detailsText-section">
+              {Array.isArray(event?.VolunteerResponsibilities) && event.VolunteerResponsibilities.length > 0 ? (
+                event.VolunteerResponsibilities.map((responsibility, index) => (
+                  <p key={index}>{responsibility}</p>
+                ))
+              ) : (
+                <>
+                  <p>Knit or start some hats with us!</p>
+                </>
+              )}
+            </div>
+
+
+            <p className="centered" style={{ color: "#FFDF8F", fontWeight: "bold" }}>
+              Spots left: {event?.MaxVolunteerNum - event?.CurrentVolunteerNum || 0}
+            </p>
+            <div className="centered">
+              {!user && (
+                <p className="error-text">Log in prior to RSVP</p>
+              )}
+              {event?.MaxVolunteerNum === event?.CurrentVolunteerNum && (
+                <p className="error-text">Volunteer capacity reached</p>
+              )}
+              {hasRSVPed && (
+                <p className="success-text">Thank you for volunteering!</p>
+              )}
+              <button
+                className={
+                  volunteerState
+                    ? 'yellow-btn-involved'
+                    : 'yellow-btn-involved-disabled'
+                }
+                disabled={!volunteerState}
+                onClick={handleRSVP}
+              >
+                RSVP to Volunteer Now
+              </button>
+            </div>
+
+
+
+            <h3 className="sub-title-involved-section">Donations Needed</h3>
+            <div className="detailsText-section">
+            <p style={{ color: "#FFDF8F", fontWeight: "bold" }}>
+              No need to RSVP, bring your donations directly to the event!
+            </p>
+              <p>Yarn</p>
+              <p>Sewing Machines</p>
+              <p>Any snacks</p>
+            </div>
+          </div>
+          )}
+
+
         {/* <Form>
           <Form.Group className="mb-3">
             <Form.Label className="inputSection">Event Type</Form.Label>
