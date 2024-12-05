@@ -18,6 +18,7 @@ import InboxPage from './pages/InboxPage';
 
 import LoginPage from './pages/UserLogin'
 import SignUpPage from './pages/UserSignUp'
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 
 import EventsPage from './pages/EventsPage';
 
@@ -43,13 +44,35 @@ const App = () => {
             <Route path="/impact" element={<ImpactPage />} />
             <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
             <Route path="/adminLogin" element={<AdminLogin />} />
-            <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
-            <Route path="/inbox" element={<InboxPage/>}/>
 
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/signUp" element={<SignUpPage/>}/>
-
-            <Route path="/events" element={<EventsPage />}/>
+            
+            {/* Protected Routes */}
+            <Route
+              path="/events"
+              element={
+                <AdminProtectedRoute>
+                  <EventsPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminDashboard/*"
+              element={
+                <AdminProtectedRoute>
+                  <AdminControlDashboard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/inbox"
+              element={
+                <AdminProtectedRoute>
+                  <InboxPage />
+                </AdminProtectedRoute>
+              }
+            />
 
           </Routes>
         </div>
