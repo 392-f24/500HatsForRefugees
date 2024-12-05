@@ -124,9 +124,11 @@ const DonationRequests = ({ donations }) => {
                             </div>
                             <div className="bottom-buttons">
                                 <div className="yellow-btn-group">
-                                    <Button className="yellow-btn-2" onClick={handleMarkReceived}>
-                                        Received
-                                    </Button>
+                                    {!selectedDonation.received && (
+                                        <Button className="yellow-btn-2" onClick={handleMarkReceived}>
+                                            Received
+                                        </Button>
+                                    )}
                                     <Button className="yellow-btn-2" onClick={handleMarkNotReceived}>
                                         Not Received
                                     </Button>

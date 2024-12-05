@@ -14,7 +14,8 @@ const AdminNavBar = () => {
   // Define navigation links
   const navLinks = [
     { to: "/inbox", label: "Inbox", key: "inbox" },
-    { to: "/events", label: "Events", key: "events" }
+    { to: "/events", label: "Events", key: "events" },
+    { to: "/donations", label: "Donations", key: "donations" },
   ];
 
   // Function to handle click on the Navbar.Brand and navigate to the landing page
