@@ -6,6 +6,8 @@ import './components/Buttons.css'
 
 import Navigationbar from './components/Navigation';
 import AdminNavBar from './components/AdminNavBar';
+import Footer from './components/Footer'; 
+
 
 import LandingPage from './pages/LandingPage';
 import ImpactPage from './pages/ImpactPage';
@@ -55,8 +57,11 @@ const App = () => {
             <Route path="/donations" element={<DonationPage />}/>
 
           </Routes>
+          <Footer />
         </div>
+        
      </div>
+     
     </div>
   );
 };
