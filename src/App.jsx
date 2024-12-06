@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/Buttons.css'
 
 import Navigationbar from './components/Navigation';
+import AdminNavBar from './components/AdminNavBar';
+import Footer from './components/Footer'; 
 
 
 import LandingPage from './pages/LandingPage';
@@ -74,8 +76,11 @@ const App = () => {
               }
             />
           </Routes>
+          <Footer />
         </div>
-      </div>
+        
+     </div>
+     
     </div>
   );
 };
