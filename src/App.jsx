@@ -20,42 +20,61 @@ import InboxPage from './pages/InboxPage';
 
 import LoginPage from './pages/UserLogin'
 import SignUpPage from './pages/UserSignUp'
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 
 import EventsPage from './pages/EventsPage';
 import DonationPage from './pages/DonationPage';
 
 
 const App = () => {
-  const location = useLocation();
-
-  const showNavbar = !location.pathname.toLowerCase().includes('/adminlogin') &&
-                     !location.pathname.toLowerCase().includes('/admindashboard') &&
-                     !location.pathname.toLowerCase().includes('/inbox') &&
-                     !location.pathname.toLowerCase().includes('/events') &&
-                     !location.pathname.toLowerCase().includes('/donations');
-
-
   return (
     <div className="App-header">
-      {showNavbar && <Navigationbar />}
-      {!showNavbar && <AdminNavBar/>}
-      <div className="content flex-grow">
 
-        <div className='body'>
+      <Navigationbar />
+      <div className="content flex-grow">
+        <div className="body">
           <Routes>
+            {/* Public Routes */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/impact" element={<ImpactPage />} />
             <Route path="/volunteerOpportunities" element={<VolunteerOpportunitiesPage />} />
             <Route path="/adminLogin" element={<AdminLogin />} />
-            <Route path="/adminDashboard/*" element={<AdminControlDashboard />} />
-            <Route path="/inbox" element={<InboxPage/>}/>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signUp" element={<SignUpPage />} />
 
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/signUp" element={<SignUpPage/>}/>
-
-            <Route path="/events" element={<EventsPage />}/>
-            <Route path="/donations" element={<DonationPage />}/>
-
+            {/* Admin-Protected Routes */}
+            <Route
+              path="/events"
+              element={
+                <AdminProtectedRoute>
+                  <EventsPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/adminDashboard/*"
+              element={
+                <AdminProtectedRoute>
+                  <AdminControlDashboard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/inbox"
+              element={
+                <AdminProtectedRoute>
+                  <InboxPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/donations"
+              element={
+                <AdminProtectedRoute>
+                  <DonationPage />
+                </AdminProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </div>

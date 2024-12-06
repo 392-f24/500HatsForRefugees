@@ -255,11 +255,11 @@ const VolunteerOpportunitiesPage = () => {
         <div className='btn-section'>
         <h4 className="sectionTitle">Want to Request an Event?</h4>
         <h4 className="">Send Margie a message about the event you'd like to host!</h4>
-          <button className="yellow-btn" onClick={() => setAddEvent(true)}>
+          <button className="yellow-btn" onClick={handleAddEventClick}>
             Request an Event
           </button>
           <h4 className="">We also welcome donations of any kind!</h4>
-          <button className="yellow-btn" onClick={() => setShowDonationForm(true)}>
+          <button className="yellow-btn" onClick={handleDonateClick}>
             Donate Today!
           </button>
         </div>
