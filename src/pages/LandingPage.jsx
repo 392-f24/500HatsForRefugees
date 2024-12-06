@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useDbData, useDbRemove, useDbUpdate } from '../utilities/firebase.js';
 import { useNavigate } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import GetInvolvedNow from '../components/GetInvolvedNow.jsx';
+
 
 import './LandingPage.css';
 
@@ -11,6 +13,13 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
   const [upcomingEvents, setUpcomingEvents] = useState([]);
+
+  const [showGetInvolved, setGetInvolved] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null); // Track the currently selected event
+  const handleGetInvolvedClickEvent = (event) => {
+    setSelectedEvent(event); 
+    setGetInvolved(true); 
+  };
 
   const events = dbEvents
     ? Object.keys(dbEvents)
@@ -36,6 +45,14 @@ const LandingPage = () => {
 
   return (
     <div className="LandingPage-container">
+
+{showGetInvolved && selectedEvent && (
+        <GetInvolvedNow 
+          show={showGetInvolved} 
+          closeModal={() => setGetInvolved(false)} 
+          event={selectedEvent} 
+        />
+      )}
       {/* Volunteer Section */}
       <div className="VolunteerWithUsContainer">
         <div className="VWU-left">
@@ -75,7 +92,7 @@ const LandingPage = () => {
                   <strong>Address:</strong> {event.Address}<br />
                 </Card.Text>
                 <div className="centered">
-                  <Button className="yellow-btn">More Info</Button>
+                <Button className="yellow-btn" onClick={() => handleGetInvolvedClickEvent(event)}>Get Involved Now!</Button>
                 </div>
 
               </Card.Body>
