@@ -149,3 +149,31 @@
 .modal.fade .modal-dialog {
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+
+.responsibilities-list {
+    margin-bottom: 1rem;
+  }
+  
+  .responsibility-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .remove-btn {
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+  }
+  
+  .add-btn {
+    margin-top: 0.5rem;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+  }
+  

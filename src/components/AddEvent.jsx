@@ -12,7 +12,7 @@ const AddEvent = ({ show, closeModal }) => {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  // const [endTime, setEndTime] = useState('');
 
   // Address fields
   const [street, setStreet] = useState('');
@@ -32,7 +32,7 @@ const AddEvent = ({ show, closeModal }) => {
   const [updateData] = useDbUpdate('/events');
 
   const handleSave = async () => {
-    if (!eventType || !location || !date || !startTime || !endTime || !street || !city || !state || !zip) {
+    if (!eventType || !location || !date || !startTime || !street || !city || !state || !zip) {
         alert('Please fill in all required fields.');
       return;
     }
@@ -47,7 +47,6 @@ const AddEvent = ({ show, closeModal }) => {
       Date: date,
       Time: {
         startTime,
-        endTime
       },
       Address: fullAddress,
       Street: street,
@@ -78,7 +77,7 @@ const AddEvent = ({ show, closeModal }) => {
   };
 
   const isSaveDisabled = () => {
-    if (!eventType || !location || !date || !startTime || !endTime || !street || !city || !state || !zip) return true;
+    if (!eventType || !location || !date || !startTime || !street || !city || !state || !zip) return true;
     if (eventType === 'Hats and Hot Chocolate') {
       return (
         !hatsNeeded ||
@@ -97,7 +96,7 @@ const AddEvent = ({ show, closeModal }) => {
     setLocation('Evanston Library');
     setDate('2024-11-21');
     setStartTime('10:00');
-    setEndTime('14:00');
+    // setEndTime('14:00');
     setStreet('1703 Orrington Ave');
     setCity('Evanston');
     setState('IL');
@@ -121,9 +120,10 @@ const AddEvent = ({ show, closeModal }) => {
       contentClassName="custom-modal-content"
     >
         <Modal.Header closeButton className="custom-modal-header">
-          <Modal.Title className="title">Request an Event from 500 Hats</Modal.Title>
+          {/*  */}
         </Modal.Header>
         <Modal.Body className="modalBody">
+        <Modal.Title className="title">Request an Event from 500 Hats</Modal.Title>
           <h4 className="sub-title">Logistics</h4>
           <Form>
             <Form.Group className="mb-3">
@@ -146,6 +146,13 @@ const AddEvent = ({ show, closeModal }) => {
             
             <Form.Group className="mb-3">
                 <Form.Label className="inputSection">Location</Form.Label>
+                <Form.Control
+                className="input fullWidth"
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Building/Venue"
+                />
                 <Form.Control
                 className="input fullWidth"
                 type="text"

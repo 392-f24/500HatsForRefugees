@@ -10,8 +10,21 @@ const EventRequests = ({ events }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [isVolunteerModalOpen, setIsVolunteerModalOpen] = useState(false);
     const [volunteerNum, setVolunteerNum] = useState(0);
-    const [responsibilities, setResponsibilities] = useState('');
+    const [responsibilities, setResponsibilities] = useState([]);
 
+    const [newResponsibility, setNewResponsibility] = useState("");
+
+    const handleAddResponsibility = () => {
+        if (newResponsibility.trim() !== "") {
+          setResponsibilities([...responsibilities, newResponsibility.trim()]);
+          setNewResponsibility(""); // Clear input field
+        }
+      };
+    
+    const handleRemoveResponsibility = (index) => {
+        const updatedResponsibilities = responsibilities.filter((_, i) => i !== index);
+        setResponsibilities(updatedResponsibilities);
+      };
 
     if (!events) {
         return (
@@ -57,7 +70,7 @@ const EventRequests = ({ events }) => {
                 [`events/${selectedEvent.id}/CurrentVolunteers`]: [],
                 [`events/${selectedEvent.id}/MaxVolunteerNum`]: volunteerNum,
                 [`events/${selectedEvent.id}/CurrentVolunteerNum`]: 0,
-                [`events/${selectedEvent.id}/VolunteerResponsibilities`]: responsibilities,
+                [`events/${selectedEvent.id}/VolunteerResponsibilities`]: responsibilities, // Store as array
             });
             console.log(`Event ${selectedEvent.id} updated successfully!`);
         } catch (error) {
@@ -66,8 +79,9 @@ const EventRequests = ({ events }) => {
         setIsVolunteerModalOpen(false);
         setSelectedEvent(null);
         setVolunteerNum(0);
-        setResponsibilities('');
+        setResponsibilities([]);
     };
+    
 
 
     const handleWithdraw = async () => {
@@ -187,12 +201,23 @@ const EventRequests = ({ events }) => {
                                 placeholder="Enter number of volunteers"
                             />
                             <label className="input-label">Volunteer Responsibilities:</label>
-                            <textarea
-                                className="input-field"
-                                value={responsibilities}
-                                onChange={(e) => setResponsibilities(e.target.value)}
-                                placeholder="Enter responsibilities"
+                            <div className="responsibilities-list">
+                            {responsibilities.map((res, index) => (
+                                <div key={index} className="responsibility-item">
+                                <span>{res}</span>
+                                <button className="remove-btn" onClick={() => handleRemoveResponsibility(index)}>Remove</button>
+                                </div>
+                            ))}
+                            </div>
+                            <input
+                            type="text"
+                            className="input-field"
+                            value={newResponsibility}
+                            onChange={(e) => setNewResponsibility(e.target.value)}
+                            placeholder="Enter a responsibility"
                             />
+                            <button className="add-btn" onClick={handleAddResponsibility}>Add Another</button>
+
                         </div>
                         <div className="bottom-buttons">
                             <Button className="yellow-btn" onClick={handleFinalAccept}>Accept</Button>

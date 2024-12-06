@@ -86,9 +86,11 @@ const DonationForm = ({ show, closeModal }) => {
       contentClassName="custom-modal-content"
     >
       <Modal.Header className="custom-modal-header" closeButton>
-        <Modal.Title className="title">Make a Donation</Modal.Title>
+        {/* <Modal.Title className="title">Make a Donation</Modal.Title> */}
       </Modal.Header>
       <Modal.Body className="modalBody">
+        <Modal.Title className="title">Make a Donation</Modal.Title>
+
         <Form>
           <Form.Group className="mb-3">
             <Form.Label className="inputSection">Donation Item</Form.Label>
