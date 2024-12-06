@@ -101,7 +101,12 @@ export const useDbData = (path) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!path) return; // Don't run if path is invalid
+    if (!path) {
+      // Reset state when path is invalid or null
+      setData(null);
+      setError(null);
+      return;
+    }
 
     const dbRef = ref(database, path);
     const unsubscribe = onValue(
@@ -114,7 +119,7 @@ export const useDbData = (path) => {
       }
     );
 
-    return () => unsubscribe(); // Cleanup listener on unmount
+    return () => unsubscribe(); // Cleanup listener on unmount or path change
   }, [path]);
 
   return [data, error];
