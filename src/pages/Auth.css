@@ -137,3 +137,16 @@
     border-radius: 50%; 
 }
 
+
+.auth-btn.autofill-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 10px;
+    margin-left: 120px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.auth-btn.autofill-btn:hover {
+    background-color: #45a049;
+}
