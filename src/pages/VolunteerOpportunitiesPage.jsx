@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDbData,useAuthState } from '../utilities/firebase.js';
+import { useDbData, useAuthState } from '../utilities/firebase.js';
 import { Card, Button } from 'react-bootstrap';
 import './VolunteerOpportunitiesPage.css';
 import axios from 'axios';
@@ -20,20 +20,34 @@ const VolunteerOpportunitiesPage = () => {
   const [dbEvents, eventsError] = useDbData('/events'); // Fetch events data from Firebase
 
   // Filter events by status
-  const events = dbEvents
+  const eventsByStatus = dbEvents
     ? Object.keys(dbEvents)
-        .map((key) => ({ id: key, ...dbEvents[key] }))
-        .filter((event) => event.EventStatus === 'accepted')
+      .map((key) => ({ id: key, ...dbEvents[key] }))
+      .filter((event) => event.EventStatus === 'accepted')
     : [];
+
+  // Filter by upcoming events
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const parseDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(year, month - 1, day);
+  };
+
+  // Upcoming events
+  const events = eventsByStatus.filter(
+    (event) => parseDate(event.Date) >= today
+  );
 
   const handleFilterChange = (e) => {
     setFilterType(e.target.value);
   };
-  
+
   const handleZipChange = (e) => {
     setZipCode(e.target.value);
   };
-  
+
   const handleRadiusChange = (e) => {
     setRadius(e.target.value ? parseFloat(e.target.value) : null); // Convert to float or set to null
   };
@@ -61,7 +75,7 @@ const VolunteerOpportunitiesPage = () => {
     return R * c;
   };
   //added by haichen  auth needed for request event /donation button:
-  const [user] = useAuthState(); 
+  const [user] = useAuthState();
   const navigate = useNavigate();
   const handleAddEventClick = () => {
     if (!user) {
@@ -70,7 +84,7 @@ const VolunteerOpportunitiesPage = () => {
       setAddEvent(true); // Open the form if authorized
     }
   };
-  
+
   const handleDonateClick = () => {
     if (!user) {
       navigate('/login'); // Redirect to login if unauthorized
@@ -78,7 +92,7 @@ const VolunteerOpportunitiesPage = () => {
       setShowDonationForm(true); // Open the form if authorized
     }
   };
-   
+
   useEffect(() => {
     const filterEventsByDistanceAndType = async () => {
       if (!events || !zipCode) return;
@@ -187,11 +201,46 @@ const VolunteerOpportunitiesPage = () => {
             </div>
           </div>
         )}
+        <div>
+          <h4 className="sectionTitle">About our Opportunities</h4>
+          <div className="AboutEventsContainer">
+            <div className="Box1">
+              <p className="EventsInfoTitle">Have an extra hat?</p>
+              <p className="EventsInfoText">
+                And you don't know what to do with it? 500 Hats for Refugees collects hat donations during our events scattered throughout the Chicago area. Come drop by to drop off a hat and help a refugee. 
+
+              </p>
+              </div>
+            <div className="Box2">
+              <p className="EventsInfoTitle">Knitting Collab Event!</p>
+              <p className="EventsInfoText">
+                At 500 Hats for Refugees we love working with creators from all over the world. At our knitting events we host a space for local Chicago knitters, from the experienced to novice, to create hats!
+              </p>
+              </div>
+              <div className="Box3">
+              <p className="EventsInfoTitle">Hot Chocolate and Hats</p>
+              <p className="EventsInfoText">
+                Our most popular event partners with Chicago venues to set up a hot chocolate stand and distribute hats to refugees in the area. We always appreciate volunteers for these events!
+              </p>
+              </div>
+              <div className="Box4">
+              <p className="EventsInfoTitle">Hat Sorting</p>
+              <p className="EventsInfoText">
+                500 Hats, recieves donations of hats and hot chocolate & so much more every day. At our Hat sorting events, volunteers can help Margie organize resources in preparation for upcoming events.
+              </p>
+              </div>
+          </div>
+
+        </div>
+        
         <div className='btn-section'>
-          <button className="yellow-btn" onClick={handleAddEventClick}>
+        <h4 className="sectionTitle">Want to Request an Event?</h4>
+        <h4 className="">Send Margie a message about the event you'd like to host!</h4>
+          <button className="yellow-btn" onClick={() => setAddEvent(true)}>
             Request an Event
           </button>
-          <button className="yellow-btn" onClick={handleDonateClick}>
+          <h4 className="">We also welcome donations of any kind!</h4>
+          <button className="yellow-btn" onClick={() => setShowDonationForm(true)}>
             Donate Today!
           </button>
         </div>

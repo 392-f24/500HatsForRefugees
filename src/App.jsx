@@ -21,6 +21,7 @@ import SignUpPage from './pages/UserSignUp'
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 
 import EventsPage from './pages/EventsPage';
+import DonationPage from './pages/DonationPage';
 
 
 const App = () => {
@@ -61,6 +62,14 @@ const App = () => {
               element={
                 <AdminProtectedRoute>
                   <InboxPage />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/donations"
+              element={
+                <AdminProtectedRoute>
+                  <DonationPage />
                 </AdminProtectedRoute>
               }
             />
